@@ -1,0 +1,293 @@
+.flexlCnt{
+    -webkit-box-align: start;
+    box-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+}
+.Mobile_BaseCalendar{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+}
+
+.CalWidth{
+    width: 350px;
+    margin: 25px auto;
+}
+
+
+.flexlIt{
+    border-radius: 2px;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    background-color: #fff;
+    display: inline-block;
+}
+
+.Mobile_yearStyle{
+    cursor: pointer;
+    padding: 0 5px; 
+}
+.Mobile_Mdays{
+    padding: 11px;
+    height: 28px;
+    width: 28px;  
+    cursor: pointer; 
+}
+
+
+.Mobile_title_Month{
+    font-size: xx-large;
+    height: 50px;
+    text-align: center;
+    width: 360px;
+    font-weight: bold;
+}
+
+.Mobile_title_Year{
+    color:#989898;
+    font-size: 36px;
+    height: 50px;
+    padding: 15px 3px;   
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+
+
+
+.Mobile_MonthNameCont {
+    margin: 15px auto;
+    position: relative;
+    display: block;
+    transform: translateX(-24px);
+    font: 500 17px/23px Roboto, Arial, sans-serif;
+}
+
+.Mobile_monthPre{
+    padding-bottom: 9px;
+    color: #e4e4e4;
+    text-align: center;
+    height: 44px;
+}
+
+
+.Mobile_MonthCalendar {   
+    background: #fff;
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    border-spacing: 0;
+}
+
+
+.Mobile_monthNow{
+    padding-bottom: 11px;
+    color: #555;
+    text-align: center;
+}
+
+
+
+.Mobile_monthNow tr{
+    width: 360px;
+    display: flex;
+}
+.Mobile_dayNames{
+    background: #0FF000;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.Mobile_DaysContainer{
+    display: flex;
+    box-shadow: 0px 10px 15px -9px rgba(0,0,0,0.22);
+    z-index: 500;
+    position: relative;
+    margin: 0 auto;
+    max-width:360px;    
+}
+
+
+.flt-body1 {
+    color: #3c4043;
+    font: 400 16px/24px Roboto, HelveticaNeue, Arial, sans-serif;
+    letter-spacing: 0.1px;
+}
+
+
+.Mobile_YearsContainer{
+    display: flex;
+    box-shadow: 0px 10px 15px -9px rgba(0,0,0,0.22);
+    z-index: 500;
+    position: relative;
+    margin: 0 auto;
+    max-width:360px;    
+}
+
+.Mobile_MonthsContainer{
+    overflow-y: scroll;
+    height: calc(100vh - 110px);
+}
+
+.Mobile_Wdays{
+    color: #aaa;   
+    text-align: center; 
+    font-weight: bold;
+    box-sizing: border-box;
+    cursor: pointer;    
+    -webkit-box-flex: 1;
+    flex: 1;
+    height: 44px;
+    margin: 2px 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 14px;
+    position: relative;
+    text-align: center;
+    width: 44px;
+    vertical-align: top;
+    z-index: 0;
+    color: var(--color-base--hover);
+    display: inline-flex;
+ 
+
+}
+
+.Mobile_dayTextStyle{
+    font-size: 15px;
+    line-height: 1;
+    width: 17px;
+    text-align: center;
+    margin: 0 auto;
+}
+.Mobile_monthDays{      
+    text-align: center; 
+    font-weight: bold;
+    box-sizing: border-box;
+    cursor: pointer;        
+    height: 49px;
+    margin: 2px 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 14px;
+    position: relative;
+    text-align: center;
+    width: calc((100% / 7)-8px );
+    vertical-align: top;
+    z-index: 0;
+    color: #aaa; 
+    display: inline-flex;
+}
+
+
+.Mobile_monthDays:hover{
+    border-radius: 50px;    
+    color:#555555;   
+    background-color: #e4e4e4;       
+    cursor: pointer;  
+}
+
+.weekPicker .Mobile_monthDays.dayNow{
+    color: #aaa;   
+    background-color: transparent;
+    border: none;  
+}
+
+.Mobile_monthDays.dayNow{      
+    cursor: pointer;    
+    color: var(--color-base--hover); 
+   /* background-color: var(--calendar--mobile--base--color--);
+    border: 1px solid var(--calendar--mobile--base--color--);    
+    border-radius: 25px;*/
+}
+
+
+.Mobile_monthDays.dayNow:hover{
+    border-radius: 50px;    
+    color: var(--color-base--hover);
+    background: var(--calendar--back--color--);
+    cursor: pointer;  
+}
+
+.Mobile_isWeekEnd{
+    background: #9effff;    
+    color:#222;    
+    cursor: pointer;
+    border:1px solid green; 
+    width: 25px;  
+    height: 22px;
+}
+.Mobile_WidthMonthContainer{
+    margin: 10px 2px;
+    height: 350px;
+}
+
+
+
+.weekActive{
+    border-radius: 30px;
+    background-color: var(--calendar--mobile--background--color--);
+    color: rgb(255, 255, 255);
+}
+ /*
+ --calendar--mobile--base--color--: rgb(21, 101, 192);
+ 
+ */
+
+ .weekActive .Mobile_monthDays{
+    color: var(--calendar--mobile--base--color--); 
+   
+}
+
+.weekActive .Mobile_monthDays.dayNow{
+    color: var(--color-base--hover);
+    background-color: transparent;
+    border: none;
+}
+
+.weekActive .isWeekEnd{
+    color: rgb(255, 255, 255);
+    background-color: var(--calendar--mobile--base--color--);
+    border: 1px solid var(--calendar--mobile--base--color--);    
+    border-radius: 25px;
+}
+
+.isWeekEnd{
+    color: #aaa;
+}
+
+.weekPicker .Mobile_MonthsContainer{
+    height: calc(100vh - 56px);
+}
+
+
+.activeday.Mobile_monthDays{
+    background: var(--calendar--back--color--);    
+    color:  var(--color-base--hover); 
+    border-radius: 25px;  
+}
+
+
+
+
+@media only screen and (max-width: 720px){
+    .weekPicker .OptionCont {
+        height: calc(100vh - 260px);
+    }
+}

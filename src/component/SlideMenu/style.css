@@ -1,0 +1,39 @@
+.SlideMenu{
+    display: block;    
+    box-shadow: 0 15px 12px rgba(0,0,0,0.22), 0 0 38px rgba(0,0,0,0.30);    
+    position: fixed;    
+    top:0;
+    height: 100%;;
+    z-index: 220;
+    border-radius: 3px;
+    opacity: 1;
+    min-width: 300px;
+    /*transition:transform 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms;*/    
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    -webkit-transform: translate3d(-110%, 0, 0);
+    -ms-transform: translate3d(-110%, 0, 0);    
+    transform: translate3d(-110%, 0, 0);
+    transition-duration: 200ms;
+    background-color:var(--background--color);
+    left:0;
+}
+
+.SlideMenu.show{
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);    
+    transform: translate3d(0, 0, 0);
+}
+
+
+.SlideMenuOverlay{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 210; 
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.22); 
+    overflow-x: hidden;   
+}
+

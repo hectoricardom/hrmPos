@@ -1,0 +1,123 @@
+
+
+.option--wrapper .delete .__action_options--.handlePrint {
+    background-color:  rgba(105, 27, 153,0.25);
+ }
+
+ .option--wrapper .delete .__action_options--.handlePrint .__icons-- svg{
+    fill:  rgba(105, 27, 153,1);
+ }
+
+ .option--wrapper .delete .__action_options--.handlePrint .__descr__{
+    color:  rgba(105, 27, 153,1);
+ }
+
+
+.dateWFormated{
+    margin: -3px 0 0;
+}
+
+.dateWFormated span{
+    font: 400 13px/16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+.dateWFormated svg{
+    margin-right: 9px;
+}
+.finance__Wrapper .finance__Container{
+    min-height: 451px;
+}
+
+
+.finance__Wrapper .finance__sort ._filter__Wrapper.printer {
+    padding: 4px 1px 0px 14px; 
+}
+
+
+
+
+
+
+
+.__print__all__btn__ {
+    display: flex;
+    padding: 7px 20px 7px 15px;
+    border-radius: 11px;
+    margin: 6px 7px;
+    background: var(--printcolor-error-text);    
+  }
+ 
+  .__print__all__btn__ svg{  
+    margin: 0px 7px 0 0;    
+    fill: var(--printcolor-error-light);    
+  }
+  
+  .__print__all__btn__ span{  
+    font: 500 14px/23px Roboto,sans-serif;
+    color:  var(--printcolor-error-light);    
+  }
+  
+
+
+
+  ._kids_list_title_ .kids_2_detail_  .__date__{ 
+    color: rgba(0,0,0,.68);
+    font: 500 13px/14px Roboto,"Roboto",sans-serif;
+    padding: 18px 10px;
+  }
+
+
+
+  ._kids_list_title_  ._label__category__ {   
+    font: 500 14px/14px Roboto,"Roboto",sans-serif;
+    padding: 0 0 24px;
+    color: var(--printcolor-error-text);
+  }
+  ._kids_list_title_  .kids_2_detail_{
+    margin: 0 0 14px;
+    min-height: 32px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: #fafafa;    
+    transition: background ease-in-out .1258s,color ease-in-out .1258s; 
+  }
+
+  ._kids_list_title_ .kids_2_detail_._active2Rmv{      
+    background:  #e8f0fe;
+  }
+
+
+  ._kids_list_title_ .kids_2_detail_._active2Rmv  .__date__{
+    color:#4285f4;
+  }
+
+  
+
+  ._kids_list_title_ .kids_2_detail_ .__detailsRight{
+    min-width: 265px;
+  }
+
+  
+  ._kids_list_title_ .kids_2_detail_  ._icon_error {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity ease-in-out .058s,visibility ease-in-out .058s;    
+  }
+
+
+  ._kids_list_title_ .kids_2_detail_._active2Rmv  ._icon_error {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  ._kids_list_title_ .kids_2_detail_  ._icon_error svg{
+    padding: 12px 12px 0px 0;
+    fill: #fafafa;    
+  }
+
+  ._kids_list_title_ .kids_2_detail_._active2Rmv  ._icon_error svg{
+    padding: 12px 12px 0px 0;
+    fill: #4285f4;
+  }
+

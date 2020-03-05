@@ -1,0 +1,19 @@
+.__form_group__ .option--wrapper .__body__{
+    overflow-y: auto;
+}
+
+
+.__gbItemWrapp__{
+    display: flex;
+    min-width: 80%;
+}
+
+
+.option--wrapper .__sort_options--.__active .__icons--._rmvFilter__{
+    padding: 0 15px;
+}
+
+
+.center--Container.arrowBack svg{
+    fill: #6f6f6f;
+}

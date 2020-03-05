@@ -1,0 +1,210 @@
+
+.appToolbar {
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+  height: 64px;
+  padding: 0 16px;
+  pointer-events: none;
+  font-size: 20px;
+}
+
+
+
+
+.tabsContainer{
+  display: inline-flex;
+  margin: 0 auto;
+  position: absolute;
+  white-space: nowrap;
+  height: 100%;
+  -moz-flex-basis: auto;
+  -ms-flex-basis: auto;
+  flex-basis: auto;
+}
+
+
+
+.paperTabs {     
+    height: 48px;
+  }
+
+
+
+.paper2Tabs {
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  padding-bottom: 1px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: .007px;
+  text-transform: uppercase;
+  width: 100%;
+  left:0; 
+  background-color:var(--background-color-b2);
+  z-index: 138;
+}
+
+
+.tabsItem a{
+  text-transform: lowercase;
+  color:var(--text-color-m3);  
+  text-decoration: none;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  text-transform: capitalize;
+  font: 300 19px/23px "Google Sans", Roboto, Arial, sans-serif;
+}
+ 
+
+ .TabAnimate{   
+  transition: height .15s ease-in-out,
+ }
+
+
+ .tabsItem .underline {
+  display: block;
+  height: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  width: 0;
+  bottom: -1px;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.tabsItem .underline .underline__inner {
+  background: var(--background-color-b4);
+  display: block;
+  height: 100%;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: var(--app-tabsItem-underline-out-direction);
+  transform-origin: var(--app-tabsItem-underline-out-direction);
+  transition: -webkit-transform .15s ease-in-out;
+  transition: transform .15s ease-in-out;
+  transition: transform .15s ease-in-out, -webkit-transform .15s ease-in-out;
+  width: 100%;
+}
+
+.tabsItem:hover .underline__inner {
+  /*
+  transform: scaleX(1);
+  transform-origin: var(--app-tabsItem-underline-in-direction);
+  */
+}
+
+.tabsItem:hover .tabContent{
+  opacity:1;
+}
+
+.tabsItem:hover a{
+  
+}
+
+.tabActive > a{ 
+  font: 500 19px/23px "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.tabsItem .underline .underline__Active {
+  transform: scaleX(1);
+  transform-origin: var(--app-tabsItem-underline-in-direction);
+  background: var(--background-color-b4);
+  
+}
+
+
+
+
+
+  .tabsItem{
+    padding: 0 32px;
+    vertical-align: middle;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    /*-ms-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;*/
+    position: relative;    
+    overflow: hidden;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    color:var(--text-color-m1);
+    
+  }
+
+.tabContent {
+    height: 100%;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    transition: opacity 0.1s cubic-bezier(0.4, 0.0, 1, 1);
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    -webkit-align-items: center;    
+    align-items: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    opacity:0.75;
+}
+
+
+.tabIcon{    
+  width: 24px;
+  height: 24px;
+  padding: 0px 2px 0px 2px;
+  margin: 0px 12px;
+  cursor: pointer;
+}   
+
+
+.tabActive::after {
+  height: 2px;
+}
+
+
+
+.tabBarContainer{
+  position: relative;
+  right: 0;  
+  left: -11px;
+  overflow: hidden;
+  display: block;
+  width: 101%;
+  background-color:var(--background-color-b2);
+  z-index: 135;  
+  height: 49px;
+  /*box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;border-bottom:1px solid #ccc;*/
+  margin: 0px;
+  
+}

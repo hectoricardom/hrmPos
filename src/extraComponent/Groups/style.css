@@ -1,0 +1,15 @@
+.finance_wrapper{
+    padding-top: 50px;
+}
+
+
+._desktop._Mobile .__Item_Finance .__details-- {
+    display: flex;
+    min-width: 300px;
+}
+
+._desktop._Mobile .__Item_Finance .__actions-- {
+    opacity: 1;
+    display: flex;
+  }
+  

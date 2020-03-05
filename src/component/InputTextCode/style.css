@@ -1,0 +1,89 @@
+
+
+.codeIt{
+  display: inline-block;
+  font-size: 14px;
+  padding: 3px 13px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  vertical-align: top;
+  white-space: normal;
+  width: calc(100% - 35px);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: text;
+  background-color: var(--dropDown--background--color);
+}
+
+
+
+.codeIt {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  min-width: 0%;
+  position: relative;
+  
+}
+
+
+
+
+
+
+.codeIt input{
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    flex-shrink: 1;
+    background-color: transparent;
+    border: none;
+    display: block;
+    font: 400 50px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    height: 48px;
+    line-height: 24px;
+    margin: 0;
+    min-width: 0%;
+    outline: none;
+    padding: 0;
+    z-index: 0;
+    direction: ltr;
+    text-align: center;
+    color: var(--tab--nav-Color--);
+}
+
+.codeIt ._label {
+  background: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: var(--tab--nav-Color--);
+  padding: 0 27px;
+  -webkit-transition: transform 150ms cubic-bezier(0.4,0,0.2,1),font-size 150ms cubic-bezier(0.4,0,0.2,1);
+  transition: transform 150ms cubic-bezier(0.4,0,0.2,1),font-size 150ms cubic-bezier(0.4,0,0.2,1);
+  width: auto;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 270px;
+  font: 400 63px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  height: 48px;
+  line-height: 24px;
+}
+
+@media (max-width: 720px){
+  .INpyT2 ._label {    
+    max-width: 230px;
+  }
+}
+

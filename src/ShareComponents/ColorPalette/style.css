@@ -1,0 +1,148 @@
+
+.Hpalette {
+    color: #616161;
+    font-family: Roboto;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 0;
+    
+}
+
+
+.shades-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    border-bottom: 1px solid #EEE;
+    height: 48px;
+}
+
+li, ol, ul {
+    list-style: none;
+}
+
+.shades-container div .align-bottom {
+    padding-top: 17px;
+    line-height: 16px;
+    font-size: 12px;
+    color:#616161;
+}
+
+ .shades-container li:first-child {
+    margin-left: 1px;
+}
+
+ .shades-container div {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 16px;
+    margin: 0 .5px;
+}
+.shade {
+    padding-top: calc(7.14% - 2px);
+    width: 33px;
+}
+
+.Active {
+    border-radius: 50%;
+}
+
+ .color:focus, .color:hover {
+    border-radius: 27%;
+}
+.Active:hover {
+    border-radius: 50%;
+}
+
+.Hpalette .labels-and-palettes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.Hpalette .color-labels {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    padding-top: 1px;
+    border-right: 1px solid #E0E0E0;
+}
+
+.color-label {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 0;
+    padding-left: 8px;
+    position: relative;
+    height: 34px;    
+    width: 80px;
+}
+
+.color-label-divider {
+    background-color:  #E0E0E0;
+    bottom: 0;
+    left: 8px;
+    height: 1px;
+    position: absolute;
+    width: 88%;
+}
+
+
+ .palette-container .color {
+    -webkit-transition: all .4s cubic-bezier(.25,.8,.25,1);
+    transition: all .4s cubic-bezier(.25,.8,.25,1);
+    color: #fff;
+    cursor: pointer;
+    margin: .5px;
+    outline: 0;
+    padding-top: 33px;
+    position: relative;
+    width: 33px;
+}
+
+.palette-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@media only screen and (max-width: 620px){
+    .Hpalette {
+        color: #616161;
+        font-family: Roboto;
+        font-size: 12px;
+        overflow: hidden;    
+        padding: 0;
+        width: 100%;
+        overflow-x: scroll;
+        
+    }
+}
+
+

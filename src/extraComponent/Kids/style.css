@@ -1,0 +1,147 @@
+.finance__Wrapper .finance__Container .__Item_Finance .__details-- .__date__ {
+    display: flex;
+}
+
+.finance__Wrapper .finance__Container .__Item_Finance .__details-- .__date__ svg{
+    padding: 0px;
+    margin: 1px 3px;       
+}
+.finance__Wrapper .finance__Container .__Item_Finance .__details-- .__date__ h5{
+    padding: 0px;     
+    margin: 2px 5px; 
+    font: 500 12px/16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;  
+    color: #5c5c5c;   
+}
+
+
+
+
+
+.kids_2_detail_{
+    display: flex;
+}
+  
+
+  
+   .kids_2_detail_  .__categories__{
+    
+    font: 500 12px/14px Roboto,"Roboto",sans-serif;
+    padding: 0 0 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    -webkit-line-clamp: 2;
+    max-width: 130px;
+  }
+  
+   .kids_2_detail_  .__title__{
+    color: rgba(0,0,0,.68);
+    font: 500 12px/14px Roboto,"Roboto",sans-serif;
+    padding: 0 0 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    -webkit-line-clamp: 2;
+    max-width: 130px;
+  }
+  
+
+  
+  .kids_2_detail_  .__date__{ 
+    color: rgba(0,0,0,.68);
+    font: 500 13px/14px Roboto,"Roboto",sans-serif;
+    padding: 0 0 18px 7px;
+  }
+  
+   .kids_2_detail_  .__money__{
+    color: rgba(0,0,0,.85);
+    font: 500 13px/17px Roboto,"Roboto",sans-serif;
+    padding: 0 0 18px;
+  }
+
+   ._label__category__{
+   
+    font: 500 12px/14px Roboto,"Roboto",sans-serif;
+    padding: 0 0 8px;
+    color: var(--printcolor-error-text);
+  }
+
+
+
+  .__dialog__2__print_ .printcallout._success{ 
+    background-color:#e6f4ea;
+    color: #34a853;
+}
+
+.__dialog__2__print_ .printcallout._success .printcallout-body .printcallout-icon svg{
+    fill: #34a853;
+}
+
+
+
+
+.__dialog__2__print_ .printcallout._problem{ 
+    background-color: #fce8e6;
+    color: #ea4335;
+}
+
+
+.__dialog__2__print_ .printcallout._problem .printcallout-body .printcallout-icon svg{
+    fill: #ea4335;
+}
+  
+
+
+
+.__dialog__2__print_ .printcallout._info{ 
+    background-color: #fef7e0;
+    color: #fbbc04;
+}
+
+
+.__dialog__2__print_ .printcallout._info .printcallout-body .printcallout-icon svg{
+    fill: #fbbc04;
+}
+
+
+.__Item_Finance .__actions--._info svg {
+    fill: #fbbc04;
+    animation: rotateScale 5s ease-in-out infinite;
+    stroke-linecap: round;
+}
+
+.__Item_Finance .__actions--._problem svg{
+    fill: #ea4335;
+    animation: rotateScale 5s ease-in-out infinite;
+    stroke-linecap: round;
+}
+
+
+.__dialog__2__print_ .detailsView .__print__all__btn__ svg {
+    margin: 2px 7px 0 0;
+    fill: var(--printcolor-error-light);
+}
+  
+  
+  
+  
+  @keyframes rotateScale {
+    0% {
+        transform: scale(0.61);
+      }
+    25% {
+      transform: scale(0.91);
+    }
+    50% {
+        transform: scale(0.61);
+    }
+    70% {
+        transform: scale(0.91);
+    }
+    100% {
+        transform: scale(0.61);
+    }
+  }
+  

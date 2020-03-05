@@ -1,0 +1,30 @@
+.h_2Popup{
+    display: block;
+    /*
+    background: #fff;
+    box-shadow: 0 10px 12px rgba(0,0,0,0.22), 0 0 38px rgba(0,0,0,0.30);
+    */
+    min-width: 120px;
+    max-width: 240px;
+    transition: all 0.35s ease;
+    position: fixed;
+    z-index: 220;
+    border-radius: 3px;
+}
+
+
+.h_2PopupOverlay{ 
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 210; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: transparent; /* Black fallback color */
+    /*
+    
+    */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+

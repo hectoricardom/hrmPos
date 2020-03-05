@@ -1,0 +1,53 @@
+
+
+.ViewHRM{
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 2010; /* Sit on top */
+    left: 0;
+    top: 0px;
+    background-color: #fff; /* Black fallback color */
+    /*background-color: rgba(0,0,0, 0.6); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.25s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
+._graphHRM_{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    margin: 0 auto 50px;
+}
+
+
+
+._graphHRM_ svg path.brush-marker
+{
+    stroke: #ccc;
+    stroke-dasharray: 4,4;
+    stroke-width: 2px;
+    cursor: pointer;
+}
+
+._graphHRM_ svg circle.brush-marker
+{
+    stroke: #ccc;
+    fill: #ccc;
+    cursor: pointer;
+}
+
+
+.overlayGraph{
+    z-index: 25;
+}
+
+
+.path_line{
+    cursor: pointer;
+}

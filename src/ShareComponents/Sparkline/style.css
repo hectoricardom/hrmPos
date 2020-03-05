@@ -1,0 +1,43 @@
+
+
+.SparklineBase{
+  position: relative; 
+  display: flex;
+  /*
+    justify-content: space-around;
+    margin-left: -15px;
+    margin-right: -15px;
+  */
+  flex-direction: column;
+  
+}
+
+
+.SparklineBase svg{
+ 
+}
+
+.SparklineBase .sparklineInfo {
+  top: 0;
+  right: 0;
+}
+
+@media (max-width: 2600) {  
+  .SparklineBase svg{
+    position: relative;
+    width: 100%;
+  }
+  .SparklineBase .sparklineInfo{
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+}
+
+.sparkline--text{
+  position: absolute;
+  padding: 8px;
+  border-radius: 7px;
+  background-color: #fff;
+  border:1px solid rgb(198, 40, 40);
+}

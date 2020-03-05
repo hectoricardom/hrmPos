@@ -1,0 +1,83 @@
+.h_Dialog{    
+    max-height: 80%;  
+    background-color: #fafafa;  
+    min-height: 240px;
+    min-width: 240px;
+    width: 696px;
+    top:50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -348px;
+    display: block;
+    background: #fff;
+    box-shadow: 0 15px 12px rgba(0,0,0,0.22), 0 0 38px rgba(0,0,0,0.30);
+    transition: all 0.35s ease;
+    position: fixed;
+    z-index: 220;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 3px;
+    -webkit-transition-property: opacity,visibility;
+    transition-property: opacity,visibility;
+    -webkit-transition-duration: .25s,0s;
+    transition-duration: .25s,0s;
+    -webkit-transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+    transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+    -webkit-transition-delay: 0.25s;
+    transition-delay: 0.25s;
+}
+
+
+.h_DialogOverlay{
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 210; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 0.88); /* Black fallback color */
+    /*background-color: rgba(0,0,0, 0.6); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.25s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+@media only screen and (max-width: 720px){
+    .h_Dialog{        
+        margin-left: -40%;     
+        width:80%;     
+    }
+}
+
+
+.yonml {
+  height: 100%;
+  position: absolute;
+  visibility: hidden;
+}
+
+
+.nCD66e .e6F8je {
+    background: linear-gradient(-35deg,#fafafa,#fff);
+    width: -webkit-calc(100vw - 96px);
+    width: calc(100vw - 96px);
+}
+.yonml.auswjd, .yonml.Cm5n8d {
+    -webkit-animation-duration: 300ms;
+    animation-duration: 300ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    visibility: inherit;
+}
+
+
+
+/*
+http://localhost:8080/verifyToken?tk=VTJGc2RHVmtYMTg0blgrQk1YWEVkeUlSTjN5ZmU5M05Xc2NicEV2Tmt0d1g3RkxBVkdUakt2L3pSbnB3VTFxSA==&email=hectoricardom@gmail.com
+http://localhost:3000/verifyAccount/#/?tk=VTJGc2RHVmtYMTlpOCtia3l5aUxVLzhDSSt3SlA3YVcvTG14T0xCMjE2ZzRkTkwxK2wwQzFBOTIwTjB3Y1VNbQ==&email=hectoricardom@gmail.com
+
+*/

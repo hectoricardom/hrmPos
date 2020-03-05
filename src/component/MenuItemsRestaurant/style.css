@@ -1,0 +1,69 @@
+
+
+.printcallout {
+    background-color: var(--printcolor-error-light);
+    color: var(--printcolor-error-text);
+    
+  }
+  
+  
+  .printcallout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 0 0 10px;
+    position: relative;
+    margin: 0 0 24px;
+    min-height: 48px;
+  }
+  
+  .printcallout .printcallout-body  {
+    display: flex;
+  }
+  
+  
+  .printcallout .printcallout-body .printcallout-message {
+    margin-right: 24px;
+    padding: 12px 0;
+    white-space: normal;
+    font: 500 14px/20px Roboto,"Roboto",sans-serif;
+  }
+  
+  .printcallout .printcallout-body .printcallout-icon { 
+    padding: 18px 12px 0;
+  }
+  .printcallout .printcallout-body .printcallout-icon.error { 
+    padding: 10px 12px 0;
+  }
+  
+  
+  .printcallout .printcallout-body .printcallout-icon svg {
+    fill: var(--printcolor-error-text);
+  }
+  
+  .printcallout .printcallout-body .printcallout-icon img {
+    height: 100px;
+    width: 100px;
+  }
+
+
+  .center--Container .text2D {
+    font: 600 15px/26px "Google Sans", Roboto, Arial, sans-serif;
+    letter-spacing: 1.1px;
+}
+.center--Container .text2D.orangeFlex {
+    color: var(--color-base--hover);    
+}
+
+
+.center--Container .text2D.grayStyle {
+    color: #727270;    
+}
+
+
+
+
+
+._dialog_ingredient_edit._duplicateOrder{
+  min-height: 275px;
+}

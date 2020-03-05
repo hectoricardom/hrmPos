@@ -1,0 +1,31 @@
+.radioBtnHRM_wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.radioBtnHRM{
+  display: flex;
+  color: var(--fire-color-canvas);
+  text-transform: capitalize;
+  position: relative;
+}
+
+.radioBtnHRM span{
+  margin-left: 8px;
+  color: var(--fire-color-canvas);
+}
+
+.radioBtnHRM ._icon_checked_ svg{
+  fill: var(--fire-color-canvas);
+  transition: fill  250ms ease;
+}
+
+.radioBtnHRM ._icon_checked_ svg path {
+  transition: d 0.25s ease;
+}
+
+
+.radioBtnHRM._active ._icon_checked_ svg{
+  fill: #64b5f6;
+}

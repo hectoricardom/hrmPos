@@ -1,0 +1,34 @@
+
+
+
+.receipt_view{
+
+  cursor: pointer;
+}
+
+
+
+.receipt_view .printcallout .printcallout-body .printcallout-icon {
+  padding: 8px 12px 0;
+}
+
+
+.msg_receipt{
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+ 
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+
+.line_separator_{
+  border-bottom: 1px solid #d5d5d5;
+}

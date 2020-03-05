@@ -1,0 +1,675 @@
+
+.formContainer{
+  align-items: center;
+  display: flex;
+  padding: 25px 20px 45px 20px;
+  border-radius:  2px; 
+  box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.inputStyle{  
+  flex: 1 1 0px;
+  display: flex;
+  max-width: 270px;
+  min-width: 220px;
+  margin: 0px auto;
+}
+
+.inputStyleC{
+  width: 100%;
+  display: flex;  
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  font-size: 15px;
+  margin: 3px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  flex: 1 1 0px;
+  align-items: center;
+  height: 48px;
+  overflow: hidden;
+  padding: 0 12px;
+}
+
+.IconInputText{
+  height: 24px;
+  width: 24px;
+  position: relative;
+  margin-right: 12px;
+  display: block;
+}
+
+.calendarIcon{
+  background: url(//www.gstatic.com/images/icons/material/system/2x/event_grey600_24dp.png) no-repeat center/24px;
+}
+
+
+.InputTextContainer{
+    align-items: flex-start;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 auto;   
+    padding: 20px 8px 21px;
+    border-radius: 3px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(60,64,67, 0.3), 0 4px 8px 3px rgba(60,64,67, 0.15);
+}
+
+.InputSelectContainer{
+  align-items: flex-start;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;   
+  padding: 7px 2px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.22);
+}
+
+.DateContainerBox{  
+  background-color: #fff;
+  box-sizing: border-box;  
+  min-height: 64px;
+  padding: 8px 0; 
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(60,64,67, 0.3), 0 4px 8px 3px rgba(60,64,67, 0.15);
+}
+
+
+.InputDateContainer1{
+  align-items: flex-start;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 64px;
+  padding: 8px 8px 0;  
+}
+
+
+.InputDateContainer{
+  align-items: flex-start;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 64px;
+  padding: 8px 8px 0;  
+}
+
+.inputWrapperCalendar{
+  display: flex;
+  flex: 1 1 auto;
+}
+
+
+.center--Container {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: default;
+  display: inline-flex;
+  height: 36px;
+  justify-content: center;
+  margin: 0 4px;
+  min-width: 64px;
+  padding: 0 23px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none !important;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap; 
+}
+
+.center--Container.grayStyle {
+  border-color: #dadce0;
+  color: #5f6368;   
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.center--Container.Icon{  
+  padding: 0 7px;
+  min-width: 32px;
+}
+
+.center--Container.Arrows{  
+  padding: 0 7px;
+  min-width: 32px;
+  cursor: pointer;
+}
+
+.center--Container.dateFormated{  
+  padding: 0 7px;
+  min-width: 120px;
+  justify-content: left;
+}
+
+
+
+.center--Container .hoverDiv  {
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 15ms linear;
+  will-change: opacity;
+  background-color: #80868b;
+}
+
+
+.center--Container:hover .hoverDiv{
+  opacity: 0.075;
+}
+
+.center--Container .Icon_Cnt {
+  top:4px;
+}
+
+
+
+.center--Container .text2D {
+  color: #3c4043;
+  font: 500 14px/20px "Google Sans", Roboto, HelveticaNeue, Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.25px;
+}
+
+
+.InputClass{
+  align-items: flex-start;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  padding: 8px 0;
+  border: none;
+  outline: none;
+  color: rgb(102, 102, 102);
+  font: 400 15px/19px "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.InputClass2{
+  align-items: center;
+  display: flex;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 0px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(255,255,255,.7);
+  font-size: 15px;
+  height: 30px;
+}
+
+.greyColor{
+color:#777;
+
+}
+
+.inputText2Alg {
+  vertical-align: top;
+  background: #fff;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin-right: 48px;
+  flex: 1 1 auto;
+  padding-top: 4px;
+}
+
+.inputText2Alg input{   
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    font-size: 19px;
+    border: none; 
+    padding: 0px; 
+    margin: 0px; 
+    height: auto; 
+    width: 100%; 
+    outline: none;
+    color: rgb(102, 102, 102);
+    font: 400 15px/19px "Google Sans", Roboto, Arial, sans-serif;
+}
+
+.saveContainer{
+  margin: -15px auto 35px auto;
+  position: relative;
+  min-height: 30px ;
+}
+
+.saveButton{
+  padding: 10px 16px;
+  background-color: #fff;
+  color: firebrick;
+  outline: none;
+  border: none;
+  margin: 0;
+  position: absolute;
+  border-radius: 5px;
+  min-width: 120px;
+  border: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  min-width: 88px;
+  outline: none;
+  text-align: center;
+  text-transform: uppercase;
+  transition: box-shadow 200ms cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 15px 12px rgba(0,0,0,0.22), 0 0 38px rgba(0,0,0,0.30);
+  -webkit-user-select: none;
+  white-space: nowrap;
+  margin-left:-44px;
+  left: 50%;
+  cursor: pointer;
+  
+}
+
+.InputSelectClass{
+  align-items: center;
+  display: flex;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 0px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(255,255,255,.7);
+  font-size: 17px;
+  padding: 13px 32px;
+  margin: 1px 0px;
+  color: #444;
+  cursor: pointer;
+}
+
+.InputSelectClass:hover {
+  background:rgba(218,220,224,0.22)
+}
+
+.borderBottom{
+  border-bottom: 1px solid #ddd;
+}
+
+.SelectContainer{
+  background-color: #fff;
+  box-shadow: 0 15px 12px rgba(0,0,0,0.22), 0 0 38px rgba(0,0,0,0.30);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+
+
+.rmvClass{
+
+}
+
+.InputSelectClassRemove{
+  align-items: center;
+  display: flex;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 0px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(255,255,255,.7);
+  font-size: 17px;
+  padding: 13px 11px;
+  margin: 1px 0px;
+  color: #444;
+  cursor: pointer;
+}
+
+.InputSelectClassRemove:hover {
+  color: firebrick;
+}
+
+.borderBottom{
+  border-bottom: 1px solid #ddd;
+}
+
+.InputSelectClassRemove .rmvClass{
+  color:green;
+}
+
+.HeaderADD{
+  padding: 25px 17px;
+  color:#fff;
+  font-size: 21px;
+  text-transform: uppercase;
+}
+
+.InputClassV2{
+  outline: none;
+  padding: 7px 11px;
+  border: none;
+  border-bottom:1px solid #ccc;
+  width: 90%;
+  font-size: 15px;
+
+}
+
+
+.InputClassV2-2{
+  outline: none;
+  padding: 7px 11px;
+  border: none;
+  border-bottom:1px solid #ccc;
+  width: 90%;
+  font-size: 15px;
+  color:#888;
+}
+
+.inputStyle2{
+  min-width: 220px;
+  max-width: 300px;
+  margin: 0px auto;
+}
+
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;  
+}
+
+
+
+
+.IconInputSelect{
+  margin: 2px auto 0 auto;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0px 0px 0;
+}
+
+.IconInputSelect:hover{
+  
+  /*box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12);*/
+  outline: none;
+}
+
+
+
+
+
+
+/********************************************************************/
+
+.toggle-container.ptoggle-button {
+  display: inline-block;
+  position: relative;
+  width: 36px;
+  height: 14px;
+  margin: 4px 1px;
+}
+
+.toggle-label.ptoggle-button {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  pointer-events: none;
+  color: navy;
+}
+
+.toggle-bar.ptoggle-button {
+  opacity: 0.5;
+  background-color: #3f51b5;
+}
+
+.toggle-bar.ptoggle-button {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0.4;
+  transition: background-color linear .08s;
+  background-color:  #000000;
+}
+
+.toggle-button.ptoggle-button {
+  -webkit-transform: translate(16px, 0);
+  transform: translate(16px, 0);
+}
+
+.toggle-button.ptoggle-button {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+  transition: -webkit-transform linear .08s, background-color linear .08s;
+  transition: transform linear .08s, background-color linear .08s;
+  will-change: transform;
+  background-color: #fafafa;
+}
+
+
+.OptionCont{    
+  overflow: hidden;
+  -ms-flex: 1 1 0.000000001px;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 0.000000001px;
+  flex-basis: 0.000000001px;
+  height: 420px;
+  overflow-y: scroll;
+  display: block;
+  width: 420px;
+}
+
+
+
+.OptionContM{    
+  overflow: hidden;
+  -ms-flex: 1 1 0.000000001px;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 0.000000001px;
+  flex-basis: 0.000000001px;
+  overflow-y: scroll;
+  display: block;
+  height: calc(100vh - 60px);
+}
+
+.inputStyleC:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-top:2px solid transparent;
+  border-bottom: 2px solid  #fff;
+}
+
+
+
+.IconInputTextModal{
+  height: 24px;
+  width: 24px;
+  margin-right: 12px;  
+  margin-top: 2px;
+  display: block;
+}
+
+
+.InputSelectContainerM2 {
+  -ms-flex-align: start;
+  align-items: flex-start;
+  background-color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 8px 8px;
+
+}
+
+
+
+
+@media only screen and (max-width: 720px){
+  .inputStyle2{
+    min-width: 190px;
+    max-width: 190px;
+    margin: 0px auto;
+  }
+
+  .OptionCont{ 
+    height: calc(100vh - 65px);
+  }
+
+  .InputTextContainer{
+    align-items: flex-start;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 auto;
+  }
+ 
+  
+
+}
+
+.input22Alg {
+  vertical-align: top;
+  background: #fff;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin-right: 48px;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding-top: 13px;
+}
+
+
+
+.InputWClass{
+  align-items: flex-start;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  padding: 8px 0;
+  border: none;
+  outline: none;
+  font: 600 18px/23px "Google Sans", Roboto, Arial, sans-serif;
+  background-color: transparent;
+  color: #fff;
+}
+
+
+
+
+.Wxwduf{
+  display: inline-block;
+  font-size: 14px;
+  padding: 16px 13px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  vertical-align: top;
+  white-space: normal;
+  width: calc(100% - 28px);
+  border: 1px solid #80868b;
+  border-radius: 4px;
+}
+
+
+
+.Wxwduf .INpyT2 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  min-width: 0%;
+  position: relative;
+  
+}
+
+
+.INpyT2 input{
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    flex-shrink: 1;
+    background-color: transparent;
+    border: none;
+    display: block;
+    font: 400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    height: 24px;
+    line-height: 24px;
+    margin: 0;
+    min-width: 0%;
+    outline: none;
+    padding: 0;
+    z-index: 0;
+    direction: ltr;
+    text-align: left;
+}
+
+.INpyT2 ._label {
+  font-size: 16px;
+  background: #fff;
+  bottom: 17px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #80868b;
+  left: 8px;
+  padding: 0 8px;
+  -webkit-transition: transform 150ms cubic-bezier(0.4,0,0.2,1),font-size 150ms cubic-bezier(0.4,0,0.2,1);
+  transition: transform 150ms cubic-bezier(0.4,0,0.2,1),font-size 150ms cubic-bezier(0.4,0,0.2,1);
+  width: auto;
+  z-index: 1;
+}

@@ -1,0 +1,55 @@
+.selectPopup{
+    display: block;
+    background: #fff;
+    box-shadow: 0 15px 12px rgba(0,0,0,0.22), 0 0 38px rgba(0,0,0,0.30);    
+    position: absolute;
+    z-index: 220;
+    border-radius: 3px;
+    opacity: 0;
+    min-height: 64px;
+    width: 305px;
+    /*transition: height 0.1s ease-out,width 0.1s ease-out,opacity 0.2s ease-out;*/
+    transition:opacity 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms, transform 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms
+    ,top 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms ,position 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms;
+    
+}
+
+
+.hOverlay{
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 210; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: transparent; /* Black fallback color */
+    /*background-color: rgba(0,0,0, 0.6); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */     
+}
+
+/*
+.gws-flights__modal-dialog {
+    display: block;
+    transform-origin:left 32px 0;
+    transform: scale3d(0.0,0.0,1);
+    transition:opacity 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms, transform 250ms cubic-bezier(0.8, 0, 0.6, 1) 0ms;
+    animation: qs-timer 250ms;
+}
+*/
+
+@media only screen and (max-width: 450px){
+
+    .selectPopup{       
+        left: 50%;
+        width: 290px;
+        margin-left: -145px;     
+    }
+}
+
+
+
+
+@-webkit-keyframes qs-timer {
+    0%{}
+}
+

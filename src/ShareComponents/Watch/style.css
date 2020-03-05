@@ -1,0 +1,332 @@
+
+.WatchCont{
+  background: #f5f6f7;
+  min-height: 70vh;
+  padding: 50px 15px;
+  margin-top: 125px;
+}
+
+.videoContainerFloat{
+  min-width: 960px;
+  min-height: 480px;
+  width: 1200px;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  border-radius: 4px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  margin: 20px auto;
+}
+
+
+
+
+@media only screen and (max-width: 960px){
+  .videoContainerFloat{
+    min-width: 720px;
+    min-height: 480px;
+    width: 100%;    
+  }  
+}
+
+@media only screen and (max-width: 720px){
+  .videoContainerFloat{
+    min-width: 300px;
+    min-height: 120px;
+    width: 100%;    
+  }  
+}
+
+@media only screen and (max-width: 370px){
+  .WatchCont{
+    background: #f5f6f7;
+    min-height: 70vh;
+    padding: 10px 0px;
+    margin-top: 55px;
+  }
+}
+
+
+.contentWatchDetail{
+  background-color: #fff;
+  padding: 40px 30px;
+  height: 150px;
+}
+
+.contentWatchDetail p{
+  font-size: 16px;
+  color: #888;
+  padding: 0 45px;
+}
+
+
+.contentWatchDetail h2{
+  text-transform: capitalize;
+  font-size: 23px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.LogoTitle{
+    padding: 12px 7px;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    font-size:19px;
+    font-weight: bold;
+    cursor:pointer;
+    color: #f5f5f1;
+    text-decoration: none;
+}
+.LogoTitle:hover{ 
+  color: #e50914;
+}
+
+ 
+.VolRange {
+  width: 20px;
+  height: 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.21);
+  /*visibility: hidden;*/
+  position: absolute;
+  bottom: 43px;
+  left: 15px;
+  -webkit-transition: all 100ms ease-in-out;
+  -moz-transition: all 100ms ease-in-out;
+  -o-transition: all 100ms ease-in-out;
+  -ms-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  overflow: hidden;
+}
+
+
+.VolRange .volumeBar {
+  width: 4px;
+  height: 64px;
+  border-radius: 2px;
+  margin: 8px;
+  background-color: rgba(0,0,0,0.6);
+  position: relative;
+  cursor: pointer;
+}
+
+.VolRange .volumeBar span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background-color: #EB4444;
+}
+
+.VolRange .volumeBar span::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  border-radius: 100%;
+}
+
+
+.LinkItemSearch{
+  text-decoration: none;
+  color: #444;
+}
+
+
+
+.banner_Footer {
+  color: #fff;
+  background: #e50914;
+  padding: 2rem;
+}
+.containerFt {
+  margin: 0px auto;
+  max-width: 720px;
+  background-color: rgb(229, 9, 20);
+  padding: 31px; 
+}
+
+.Copyright{
+padding: 15px;
+text-align: center;          
+font-size: 23px;
+font-weight: bold;
+}
+.disclaimer{
+padding: 15px 7px;
+text-align: center;
+text-justify: auto;
+}
+
+
+
+.videoProgressBlock {
+  background-color: #999;  
+  border-radius:2px;
+}
+
+.videoProgressBar {
+  touch-action: none;
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 2px;
+  position: relative;
+  /*background-color: rgba(255, 255, 255, 0.2);*/
+  color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  text-align: left;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 2px;
+  transition: height 120ms ease-in-out, margin 120ms ease-in-out, border-radius 120ms ease-in-out;
+}
+
+.ControlBar:hover .videoProgressBar {
+    height: 6px;
+    margin-top: 0px;
+    border-radius: 3px;
+}
+
+
+.videoTimeBar, .videoBufferBar {
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: rgb(235, 68, 68);
+  border-radius: inherit;
+}
+
+.videoBarButton {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  margin: auto;
+  border-radius: 100%;
+  z-index: 43;
+  cursor: pointer;
+  -webkit-user-drag: element;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.videoBarButton:active {
+  cursor: pointer;
+}
+
+
+
+.videoBarButton:not([aria-disabled=true]) {
+  cursor: pointer;
+}
+
+.serverOption{
+  width:200px;
+  margin: 0 auto;
+  -webkit-transition: all 100ms ease-in-out;
+  -moz-transition: all 100ms ease-in-out;
+  -o-transition: all 100ms ease-in-out;
+  -ms-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  padding: 7px;
+  margin-top:5px;
+  position: relative;
+}
+
+.serverOption:hover{
+  transform: scale(1.1);
+  border-radius: 4px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.1);  
+  margin-top:3px;  
+}
+
+.serverOptionActive{
+  transform: scale(1.1);
+  border-radius: 4px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.1);  
+  margin-top:3px;  
+}
+
+
+.alsoLike{   
+    color: #f5f6f7;
+    margin-bottom: 5px;
+    font-family: "Tiempos", Georgia, serif;
+    font-size: 2.625rem;
+    font-weight: 800;
+    letter-spacing: -0.0625rem;
+    line-height: 3rem;
+    text-transform: uppercase;
+}
+
+.sourceError{
+  margin: 0px auto;
+  position: absolute;
+  display: flex;
+  bottom: -55px;
+  /* left: 26%; */
+  font-size: 21px;
+  font-weight: bold;
+  background: greenyellow;
+  background: -webkit-linear-gradient(top left, #4db6ac, #00695c);
+  background: -o-linear-gradient(top left, #4db6ac, #00695c);
+  background: -webkit-gradient(linear, left top, right bottom, from(#4db6ac), to(#00695c));
+  background: linear-gradient(to bottom right, #4db6ac, #00695c);
+  -webkit-box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+  padding: 15px 25px;
+  background: #f5f5f1;
+  color: #666666;
+  text-align: center;
+  width: calc(100% - 50px);
+} 
+
+
+.AdsCont{
+    position: absolute;
+    top: -6px;
+    right: -17px;
+    padding: 3px 5px;
+    color: #fff;
+    font-size: 12px;
+    background: #4db6ac;
+    border-radius: 7px;
+  }
+
+
+
+  .thumbnail-container {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.thumbnail-img {
+  position: absolute;
+  width: auto;
+}

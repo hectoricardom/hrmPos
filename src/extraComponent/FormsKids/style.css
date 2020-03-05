@@ -1,0 +1,21 @@
+._form_group_field_date_{
+    height: 36px;
+    margin: 20px auto;
+    min-width: 64px;
+    max-width: 260px;
+    padding: 4px 20px;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    margin-left: -30px;   
+
+}
+
+._form_group_cancel_{
+    display: flex;
+    margin: 7px;
+}
+
+._form_group_cancel_ ._icon_{
+
+}

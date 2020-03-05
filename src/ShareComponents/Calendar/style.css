@@ -1,0 +1,253 @@
+
+/*
+var(--calendar--color--)
+var(--calendar--back--color--);  
+*/
+
+
+.flexlCnt{
+    -webkit-box-align: start;
+    box-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+}
+.baseCalendar{
+    display: block;
+    margin: 0 auto;
+    width: 420px;
+    position: relative;
+}
+
+.DesktopYearContainer{
+    display: flex;
+   
+}
+
+
+.CalWidth{
+    width: 350px;
+    margin: 25px auto;
+}
+
+
+.flexlIt{
+    border-radius: 2px;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    background-color: #fff;
+    display: inline-block;
+}
+
+.yearStyle{
+    cursor: pointer;
+    padding: 0 5px; 
+}
+.Mdays{
+    padding: 11px;
+    height: 28px;
+    width: 28px;  
+    cursor: pointer; 
+}
+
+.Wdays{
+    font-size: 19px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:#757575; 
+    padding: 11px;
+    height: 28px;
+    width: 28px;  
+}
+
+
+.title_Month{
+    font-size: xx-large;
+    height: 50px;
+    text-align: center;
+    width: 360px;
+    font-weight: bold;
+}
+
+.title_Year{
+    color:#989898;
+    font-size: 36px;
+    height: 50px;
+    padding: 15px 3px;   
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+
+
+
+.monthPre{
+    padding-bottom: 9px;
+    color: #e4e4e4;
+    padding-top: 15px;
+    text-align: center;
+}
+
+
+.MonthCalendar {   
+    background: #fff;
+    display: block;
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
+.monthNow th{
+    padding-bottom: 11px;
+    color: #555;
+    text-align: center;
+}
+
+.dayNames{
+    background: #0FF000;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+.Wdays{
+    color: #aaa;   
+    text-align: center; 
+    font-weight: bold;
+    box-sizing: border-box;
+    cursor: pointer;    
+    -webkit-box-flex: 1;
+    flex: 1;
+    height: 44px;
+    margin: 2px 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 14px;
+    position: relative;
+    text-align: center;
+    width: 44px;
+    vertical-align: top;
+    z-index: 0;
+    color: var(--calendar--color--);
+    
+}
+
+.Wdays .dayTextStyle, .monthDays .dayTextStyle{
+    font-size: 15px;
+    line-height: 1;
+    width: 17px;
+    text-align: center;
+    margin: 0 auto;
+}
+.monthDays{
+    font-weight: bold;
+    color: #555;
+    border-radius: 50%;    
+    box-sizing: border-box;
+    cursor: pointer;    
+    -webkit-box-flex: 1;
+    flex: 1;    
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 14px;
+    position: relative;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    margin:2px;
+    vertical-align: top;
+    border: 2px solid  #fff;
+    z-index: 0;
+    transition: background 15ms linear;
+    will-change: background;
+}
+
+
+.monthDays:hover{
+    border: 2px solid  #aaa;    
+    color:#222;   
+    cursor: pointer;  
+}
+
+
+.dayNow{
+    background: #fff;    
+    color:var(--calendar--color--);    
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+}
+
+.isWeek3nd{
+    background: #9effff;    
+    color:#222;    
+    cursor: pointer;
+    border:1px solid green; 
+    width: 25px;  
+    height: 22px;
+}
+.WidthMonthContainer{
+    margin: 10px 2px;
+    height: 350px;
+    width: 100%;
+}
+
+
+.activeday.monthDays{
+    background: var(--calendar--back--color--);    
+    color:  var(--calendar--color--);    
+}
+
+
+.activeday.monthDays:hover {
+    border: 2px solid   var(--calendar--color--);
+    color:  var(--calendar--color--);
+}
+
+._flipper{
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;    
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 0 4px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.24);
+    cursor: pointer;
+    margin: -20px;
+    pointer-events: all;
+    height: 40px;
+    width: 40px;
+    z-index: 399;
+
+}
+
+._prev{
+    left: -7px;
+}
+
+._next{
+    right: -7px;
+}
+
+
+
+._flipper_icon{
+    height: 24px;
+    width: 24px;
+    margin: 0 auto;
+}

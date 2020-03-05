@@ -1,0 +1,495 @@
+._form_group_field_date_{
+    height: 36px;
+    margin: 20px auto;
+    min-width: 64px;
+    max-width: 260px;
+    padding: 4px 20px;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    margin-left: -30px;   
+
+}
+
+._form_group_cancel_{
+    display: flex;
+    margin: 7px;
+}
+
+._form_group_cancel_ ._icon_{
+
+}
+
+.__form__ ._form_group_field_.e_textArea{
+  margin: 25px auto 0;
+  min-height: 180px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.__upload_container__{
+    position: relative;
+    margin: 20px auto;
+    width: 600px;
+  }
+  
+  
+  .__upload_container__ .title{
+    color: #7d7d7d;
+    font-size:  1.8em;   
+    text-align: center;
+    margin: 0.4em 1em;
+  }
+  
+  .__upload_container__ .title--desc{
+    color: #b4b4b4;
+    font-size:  1.4em; 
+    text-align: left;
+    margin: 0.3em 0.7em;
+  }
+  
+  
+  .__upload_container__ .upload--Wrapper{
+    display: flex;
+    position: relative;
+    margin: 3em 0.7em;
+  }
+  
+  .upload--Container{
+    min-height: 20px;
+    margin: 0.3em 0.7em;
+  }
+  
+  .upload--Container span{
+    position: absolute;
+    padding: 15px;
+  }
+  
+  .upload--Container input{
+    position: absolute;
+    opacity:0;
+    height:100%;
+    width:100%;
+    
+  }
+  .__upload_container__ .file_Done {
+    position: relative;
+      min-width: 24px;
+      margin: 1.6em 0.1em 0;
+      color: #7a7a7a;
+      font: 500 15px/19px "Roboto","Arial","Open Sans",sans-serif;
+  }
+  
+
+  
+.upload__Video_options{
+    display: flex;
+  }
+  
+  .upload__Video_options .__btn__{
+    margin: 0 2%;
+    position: relative;
+    padding: 7px 7px 0;
+    border-radius: 50%;
+  } 
+  
+  .upload__Video_options .__btn__ svg{
+    fill:  #7d7d7d;
+  } 
+  
+  .upload__Link .__btn__ svg{
+    fill:  #7d7d7d;
+  } 
+  
+  .Thumbnail__Link .__btn__ svg{
+    fill:  #7d7d7d;
+  }
+  
+  .upload__Video_options .__btn__._active_ svg {
+    fill:var(--color-base--hover);
+  }
+  
+
+  .upload__Video_options img{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+  }
+
+
+
+  
+.upload__Video{
+    padding: 0;
+    position: relative;
+    border: 1px dashed  #7d7d7d;
+    border-radius: 13px;
+    width: 95%;
+    margin: 0 2%;
+    opacity: 0;
+    -webkit-transition: opacity .16s ease;
+    /*, fade-in .6s ease-out forwards, enter-text .6s forwards;*/
+    transition: opacity .16s ease;
+    transition-delay: 0s; 
+    max-height: 0px;
+  }
+  
+
+
+  
+.upload__Video input{
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 35;
+    top: 0;
+    left: 0;
+  }
+  
+  .upload__Video svg{
+    fill:  #7d7d7d;
+  }
+  .upload__Video span{
+    font-family: Dosis,sans-serif;
+    font: 500 15px/19px "Roboto","Arial","Open Sans",sans-serif;
+    color:  #7d7d7d;
+  }
+  
+  
+  .__edit_container_forms_ iframe{
+    width: 95%;
+    margin: 0 2%;
+    height: 360px;
+    border-radius: 13px;
+  }
+  
+  .upload__Video_wrapper{
+    padding: 5px 0;
+    position: relative;
+    width: 75%;
+    margin: 40px auto 0;
+  }
+  
+  .upload__Video_options{
+    display: flex;
+  }
+  
+  .upload__Video_options .__btn__{
+    margin: 0 2%;
+    position: relative;
+    padding: 7px 7px 0;
+    border-radius: 50%;
+  } 
+  
+  .upload__Video_options .__btn__ svg{
+    fill:  #7d7d7d;
+  } 
+  
+
+
+
+  [section-active="video"] ._video_section_wrapper { 
+    opacity: 1;
+    transition-delay: 0.61s; 
+    -webkit-transition: opacity .46s ease;
+    /*, fade-in .6s ease-out forwards, enter-text .6s forwards;*/
+    transition: opacity .6s ease;
+    max-height: 500px;
+    padding: 67px 0;
+  }
+
+
+  [upload-type="true"] .upload__Video { 
+    opacity: 1;
+    max-height: 500px;
+    transition-delay: 0.61s; 
+    -webkit-transition: opacity .46s ease;
+    /*, fade-in .6s ease-out forwards, enter-text .6s forwards;*/
+    transition: opacity .6s ease;
+    padding: 100px 0;
+  }
+
+
+
+
+  ._form_group_cancel_ .center--Container.arrowBack svg {
+    fill:  #7d7d7d;
+  }
+
+
+
+  .card2GroupAddForm{    
+  margin: 50px auto 12px;
+  }
+
+
+  .card2AddForm.isMobile{
+    padding: 5px 1px;
+    margin: 10px auto 12px;
+    width: 98%;
+  }
+
+
+
+  .card2AddForm.isMobile .printcallout .printcallout-body .printcallout-message{
+    width: 150px;
+  } 
+
+  .card2AddForm.isMobile img{
+    width:150px;
+    
+  }
+
+
+.card2AddForm{
+  padding: 5px 7px;
+  margin: 10px auto 12px;
+  width: 70%;
+  position: relative;
+  display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /*
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    */
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 200px;
+}
+
+  .card2AddForm img{
+    width:180px;
+    height:140px;
+    margin: 0 auto;
+  }
+
+  .card2AddForm ._label{
+    margin: 15px auto 5px;
+    font: 500 15px/19px "Roboto","Arial","Open Sans",sans-serif;
+    color:  #7d7d7d;
+  }
+
+
+  .card2AddForm .printcallout .printcallout-body .printcallout-icon svg {
+    fill: var(--printcolor-error-text);
+  }
+
+
+  .card2AddForm .printcallout .printcallout-body .printcallout-icon {
+    padding: 8px 12px 0;
+}
+
+
+.card2AddForm input{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 0 0 10px;
+  position: absolute;
+  margin: 0 0 24px;
+  min-height: 48px;
+  z-index: 65;
+}
+
+.card2AddForm .printcallout{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 0 0 10px;
+  position: absolute;
+  margin: 0 0 24px;
+  min-height: 48px;
+}
+
+
+
+
+._icon_receipt_upload{
+  width: 96px;
+  margin: 1px auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -48px;
+  top: 50%;
+  margin-top: -48px;
+}
+
+
+
+._recommend_form_from_receipt_{
+  display: block;
+  margin: 50px auto;
+  width: 80%; 
+}
+
+._recommend_field_{
+  margin: 15px auto;
+ 
+  
+}
+
+._recommend_field_ h5{  
+  font: 500 14px/16px "Roboto","Arial","Open Sans",sans-serif;  
+  margin: 5px 1px 5px 12px;
+  color: var(--color-base--hover);
+  background:#e8f0fe;
+  padding: 7px 13px;
+  border-radius: 50px;
+}
+
+
+
+
+.__save__btn._loadRecepit_{
+  margin: 80px auto 20px;
+  width: 150px;
+}
+
+.scanner_laser{
+  animation: scanner_laser_dash 3s ease-in-out infinite;
+}
+
+
+._form_view_operation_{
+  background-color: #ffffff;
+  z-index: 198;
+  min-height: 1800px;
+}
+
+
+
+.__form__ .__form_group__._addOpr_{
+  background-color: #ffffff;
+  z-index: 45;
+  min-height: 1200px;
+}
+
+
+
+
+.card2AddForm .uploadingWrapp{
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 0 0 10px;
+    position: absolute;
+    margin: 0 0 24px;
+    min-height: 48px;
+    z-index: 65;
+}
+
+
+._recommend_field_ div{
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  /*
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  */
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 10px 10px 4px 35px;
+  padding: 7px 4px 7px 7px;
+
+
+}
+
+
+._recommend_field_ div p{
+ 
+  font: 500 13px/16px "Roboto","Arial","Open Sans",sans-serif;
+  color:  #5f6368;
+  letter-spacing: 0.1px;
+  /*
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;  
+  */
+  text-size-adjust: 100%;
+  height: 18px;
+  cursor: pointer;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+._recommend_field_ div.field_recommend_active{
+  background: var(--calendar--back--color--);   
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  
+  background: #f5f5f5;
+}
+
+._recommend_field_ div.field_recommend_active p{ 
+  color: var(--color-base--hover);
+  color: #616161;
+}
+
+._recommend_field_ div.field_recommend_active svg{  
+  fill:  #5f6368;
+  margin-right:15px ;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 800px){
+  ._recommend_form_from_receipt_{
+    max-width: 320px;
+  }
+}
+
+@media only screen and (min-width: 800px){
+  ._recommend_form_from_receipt_{    
+    max-width: 460px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+}
+
+
+
+
+
+
+
+@keyframes scanner_laser_dash {
+  100%, 0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(90%);
+  }
+}
+
+
