@@ -1,0 +1,19 @@
+
+[is-mobile="true"]._dialog_ingredient_edit ._actions_ .btn_action {
+  padding: 10px;
+  min-width: 65px;
+}
+
+
+[is-mobile="true"]._dialog_ingredient_edit ._bottom_wrp {
+    display: block;
+}
+
+
+
+[is-mobile="true"]._dialog_ingredient_edit h5 {
+  background: var(--calendar--back--color--);
+  color: var(--color-base--hover);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}

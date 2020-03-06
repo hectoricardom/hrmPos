@@ -21,10 +21,12 @@
   ._cart_item_{
     margin: 25px 10px 10px;
     box-shadow: 0 3px 5px 0 rgba(60,64,67,.302), 0 1px 6px 1px rgba(60,64,67,0);
+    background: #fff;
   }
 
   ._cart_item_top_{
-        display: flex;
+    display: flex;
+    background: #fff;
   }
 
   ._cart_item_top_left_{
@@ -413,3 +415,225 @@
       display: flex;
       margin: 15px 15px;
    }
+
+
+
+
+  .btnFloatCheckOut{
+    position: fixed;    
+    bottom: 80px;
+    right: 32%;
+    border-radius: 50px;
+    min-width: 32px;
+    min-height: 32px;
+    background: var(--color-base--hover);
+    color: #fff;
+    z-index: 98;
+    box-shadow: 0 3px 5px 0 rgba(60,64,67,.302), 0 1px 6px 1px rgba(60,64,67,0);    
+  }
+
+  .btnFloatCheckOut ._wrp_{
+    padding: 11px 13px;
+    display: flex;
+
+  }
+
+  .btnFloatCheckOut ._wrp_ h5{
+    padding: 5px 0;
+    margin: 0;
+  }
+
+  .btnFloatCheckOut ._wrp_ p{
+    margin: 0;
+    padding: 3px 0 5px 11px;
+  }
+
+
+  [is-mobile="true"] ._dialog_add_tip_btns{
+    width: 70%;
+    flex-wrap: wrap;
+    margin: 20px auto;
+  }
+
+  [is-mobile="true"] ._dialog_add_tip_btns ._tip_box_{
+    margin: 7px 15px;
+  }
+  
+
+  
+
+  [is-mobile="true"][is-in-cart="true"] ._cart_item_sub_ ._cart_item_sub_extras{
+    --dimention_sub_ingredients--: 30px;
+  }
+  
+
+  [is-mobile="true"] ._cart_item_sub_ ._cart_item_sub_extras ._name{
+    width: 50px;    
+  }
+
+  
+    
+  [is-mobile="true"] ._cart_item_sub_ ._cart_item_sub_extras ._qty {
+  
+    bottom: 0px;
+    right: -15px;  
+    width: 10px;
+    height: 10px;
+    padding: 3px 3px 4px 5px;
+    font: 500 12px/12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  }
+
+  [is-mobile="true"] ._cart_item_._last{    
+    margin-bottom:60px;
+}
+
+
+[is-mobile="true"] ._cart_item_top_ ._cart_item_price_{
+  text-align: right;
+}
+
+
+
+
+
+
+
+[is-mobile="true"]._dialog_add_tip ._body_{
+  height: calc(100vh - 125px);
+  max-height: calc(100vh - 125px);
+}
+
+[is-mobile="true"]._dialog_add_tip ._body_.tipView{
+  height: calc(100vh - 155px);
+  max-height: calc(100vh - 155px);
+}
+
+
+._dialog_add_tip ._dialog_add_tip_range{
+  width: 70%;  
+  margin: 30px auto 20px;
+  height: 30px;
+}
+
+._dialog_add_tip ._dialog_add_tip_range input[type="range"]{
+    width: 100%;
+   
+}
+
+[is-mobile="true"] ._dialog_add_tip ._dialog_add_tip_range{
+  margin: 30px auto 30px;
+  
+}
+
+
+
+
+
+
+.confirmView ._total_items p {
+  font: 500 14px/19px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;  
+  color: #5c5c5c;
+  margin: 35px 0 15px;
+  text-align: center;
+}
+
+.confirmView  ._dialog_add_tip_btns{
+  margin: 25px 7px;
+}
+
+[is-mobile="true"] .confirmView  ._dialog_add_tip_btns{
+  width: 96%;
+}
+
+
+.confirmView  ._dialog_add_tip_btns ._tip_box_{
+  display: flex;
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.confirmView  ._dialog_add_tip_btns ._tip_box_._active{
+  background: var(--color-base--hover);
+}
+
+.confirmView  ._dialog_add_tip_btns ._tip_box_._active p,.confirmView  ._dialog_add_tip_btns ._tip_box_._active svg{
+  color: #fafafa;
+  fill: #fafafa;
+}
+
+
+.confirmView  ._dialog_add_tip_btns ._tip_box_ p {
+  font: 500 14px/14px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  text-transform: capitalize;
+  color: var(--color-base--hover);
+  margin: 5px;
+}
+
+.confirmView  ._dialog_add_tip_btns ._tip_box_ svg {
+  fill: var(--color-base--hover);
+  margin: 0px 9px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 12px;
+  padding: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.6;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 50px;
+  --slider_thumb--:32px;
+}
+
+
+
+/*
+[is-mobile="false"] .slider:hover {
+  opacity: 1;
+  padding: 5px;
+  margin-left: -2px;
+  margin-top: -1px;
+}
+
+
+[is-mobile="false"] .slider:hover::-webkit-slider-thumb,
+[is-mobile="false"] .slider:hover::-moz-range-thumb
+{
+  width: 30px;
+  height: 30px;
+}
+
+*/
+
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider_thumb--);
+  height: var(--slider_thumb--);
+  border-radius: 50px;
+  background: var(--color-base--hover);;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: var(--slider_thumb--);
+  height: var(--slider_thumb--);
+  background: var(--color-base--hover);
+  cursor: pointer;
+}

@@ -12,6 +12,11 @@ const fingerprint_GLOBAL = 'Fingerprint2'
 const firebaseUrl = `https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.8.0/fingerprint2.min.js`
 
 
+
+
+
+
+
 export function getFingerPrint() {
     return new Promise((resolve, reject) => {        
         getSDK(firebaseUrl, fingerprint_GLOBAL).then(fp => {
@@ -208,6 +213,57 @@ export const Base64 = {
   export function isPortrait() {
     return window.innerHeight > window.innerWidth;
   }
+
+
+
+
+  export function calcTotal(itemOnCart, id,orderId){  
+    let value = 0;
+    let currentOrder = itemOnCart && itemOnCart[orderId] && itemOnCart[orderId][id]  && itemOnCart[orderId][id];
+    let currentSize = currentOrder && currentOrder['size'];
+    let valueOrder = 0;
+    let QtyOrder = currentOrder && currentOrder['qty'];
+    let currentSizeKey = currentSize && Object.keys(currentSize)[0];  
+    let valeSize = currentSizeKey && currentSize[currentSizeKey]?currentSize[currentSizeKey]:0;
+    valueOrder += valeSize;
+    currentOrder && currentOrder['extras']   && Object.keys(currentOrder['extras']).map(_ext=>{
+      let _extQty = currentOrder['extras'][_ext]['qty']?currentOrder['extras'][_ext]['qty']:0;
+      let _price = currentOrder['extras'][_ext]['price']?currentOrder['extras'][_ext]['price']:0;
+      if(_extQty>0){
+        valueOrder += _price*_extQty; 
+      }          
+    })
+    value = valueOrder * QtyOrder;
+    return value;
+  }
+  
+  
+  export function calcTotalCart(itemOnCart){
+    let value = 0;
+    itemOnCart && Object.keys(itemOnCart).map(orderId=>{
+      let valueOrder = 0;
+      let QtyOrder = 1;
+      Object.keys(itemOnCart[orderId]).map(id=>{
+        let currentOrder = itemOnCart && itemOnCart[orderId] && itemOnCart[orderId][id]  && itemOnCart[orderId][id];
+        let currentSize = currentOrder && currentOrder['size'];
+        QtyOrder = currentOrder && currentOrder['qty'];
+        let currentSizeKey = currentSize && Object.keys(currentSize)[0];  
+        let valeSize = currentSizeKey && currentSize[currentSizeKey]?currentSize[currentSizeKey]:0;
+        valueOrder += valeSize;
+        currentOrder && currentOrder['extras']   && Object.keys(currentOrder['extras']).map(_ext=>{
+          let _extQty = currentOrder['extras'][_ext]['qty']?currentOrder['extras'][_ext]['qty']:0;
+          let _price = currentOrder['extras'][_ext]['price']?currentOrder['extras'][_ext]['price']:0;
+          if(_extQty>0){
+            valueOrder += _price*_extQty; 
+          }          
+        })
+      })
+      value += valueOrder * QtyOrder;
+    })
+    return value;
+  }
+  
+  
 
 
 
@@ -2520,6 +2576,22 @@ var extractDigit = function( a, bitMask, shiftRightAmount ) {
 }
 
 
+
+
+export function date2pretyfy2(dt) {  
+    var date = dt?!isNaN(dt)?new Date(parseInt(dt.toString())):new Date():new Date();   
+    date.setHours(date.getHours());
+    return `${monthsList_Short[date.getMonth()+1]} ${date.getDate()}, ${date.getFullYear()}`;  
+}
+  
+export function time2pretyfy2(dt,ss) {
+    var date = dt?!isNaN(dt)?new Date(parseInt(dt.toString())):new Date():new Date();
+    date.setHours(date.getHours());
+    var MM = date.getMinutes();
+    var sec = date.getSeconds();
+    var SS = ss?`:${sec>9?sec:`0${sec}`}`:'';
+    return `${date.getHours()}:${MM>9?MM:`0${MM}`}${SS}`;
+ }
 
 
 

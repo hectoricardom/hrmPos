@@ -6,7 +6,7 @@ import * as commonActions from '../../state/commonActions';
 import * as dialogActions from '../../state/dialogActions';
 import { NavLink , withRouter} from 'react-router-dom';
 
-
+import * as Print2 from '../../state/printDoc';
 import './style.css';
 
 import ItemDetailRestaurantRx from '../ItemDetailRestaurant';
@@ -14,10 +14,11 @@ import * as Util from '../../state/Util';
 
 import Icons from '../Icons/Icons';
 
+import InputText from '../InputText';
 
 var cartFormName = 'cartData';
 
-
+const InfoUserFromName = 'InfoUser';
 
 
 
@@ -103,14 +104,14 @@ class CartRestarant extends Component {
     _th.setState({itmActive:null,dimension:{}});
   }
 
-
+/*
   close_DialogView(id,i){ 
     var _th = this;         
     var options = {id:id}; 
     _th.props.dialogActions.CloseDialog(options); 
     //_th.setState({itmActive:null,dimension:{}});
   }
-
+*/
   
   showItem(id){  
     var _th = this; 
@@ -203,7 +204,6 @@ class CartRestarant extends Component {
     let extras = category && commonActions.data[category]['extras'];
     let data =  category && commonActions.data[category]['list'][id]?commonActions.data[category]['list'][id]:{};
 
-    console.log(data)
     // let dataMenu =  data && data[groupActive] && data[groupActive]['list'] &&  data && data[groupActive]['list'][plateId];
     
      /*
@@ -318,23 +318,45 @@ class CartRestarant extends Component {
     const { itemOnCart, isMobile } = this.props;
     let isInCart = true;
     var _item2cart = itemOnCart; 
-    var totalCart = calcTotalCart(itemOnCart);
-    console.log(_item2cart)
+    var totalCart = Util.calcTotalCart(itemOnCart);
       return (
-            <div  className={`graph_Container isInCart ${isInCart?'isVisible':''}`} style={{width:isInCart?'99%':0}} >
+            <div is-mobile={isMobile?'true':'false'} is-in-cart={'true'} className={`graph_Container isInCart ${isInCart?'isVisible':''}`} style={{width:isInCart?'99%':0}} >
                   {isMobile?null:<div className={'header_title_group'}>
                       <h3>{'CART'}</h3> 
                       <div className={'__save__btn'} >
                           <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#f8d6d3'}}  onClick={this.HandleCheckOut.bind(this)}>
                               <div className="hoverDiv orangeFlex "/>
-                              <span className="text2D orangeFlex">{`CheckOut`} ${totalCart?totalCart.toFixed(2):0}</span>              
+                              <span className="text2D orangeFlex">{`CheckOut`} ${(totalCart+totalCart*0.06).toFixed(2)}</span>              
                           </div>
                       </div>                     
                     </div>}
+
+                    {isMobile?totalCart>0?
+                    <div className={`btnFloatCheckOut`}  onClick={this.HandleCheckOut.bind(this)}>
+                        <div  className={`_wrp_`}>
+                          <h5> 
+                            {'CHECKOUT'}
+                          </h5>
+                          <p>
+                            {(totalCart+totalCart*0.06).toFixed(2)}
+                          </p>
+                        </div>
+                    </div>
+                    :
+                    <div className={`btnFloatCheckOut`}>
+                      <div  className={`_wrp_`}>
+                        <h5> 
+                          {'Car is Empty'}
+                        </h5>
+                        <p>                       
+                        </p>
+                      </div>
+                    </div>
+                  :null}
                    {
-                    _item2cart && Object.keys(_item2cart).map(orderNo=>{
+                    _item2cart && Object.keys(_item2cart).map((orderNo,indOrd)=>{
                       return(<div>
-                          {_item2cart[orderNo] && Object.keys(_item2cart[orderNo]).map(plateId=>{ 
+                          {_item2cart[orderNo] && Object.keys(_item2cart[orderNo]).map((plateId)=>{ 
                             let orderDetail = _item2cart[orderNo][plateId];                        
                             let currentSize = orderDetail && orderDetail['size'];   
                             let currentQty = orderDetail && orderDetail['qty'];
@@ -343,11 +365,13 @@ class CartRestarant extends Component {
                             let currentSizeKey = currentSize && Object.keys(currentSize)[0]; 
                             let currentExtras = orderDetail && orderDetail['extras'];         
                             //let item =  data && data[groupActive]&& data[groupActive]['list'] &&  data && data[groupActive]['list'][plateId];
+                            let isLastItem = Object.keys(_item2cart).length-1 === indOrd?true:false;
                             if(orderDetail){                              
                               let ImgUrlPlt = commonActions.getBlobImage(currentPicture) || currentPicture;
-                              let total = calcTotal(itemOnCart,plateId,orderNo) || 0;
+                              let total = Util.calcTotal(itemOnCart,plateId,orderNo) || 0;                              
+                             
                               return(
-                                <div className={'_cart_item_'}>
+                                <div className={`_cart_item_ ${isLastItem?'_last':''}`}>
                                   <div className={'_cart_item_top_'}>
                                     <div className={'_cart_item_top_left_'} onClick={this.HandleEdit.bind(this,orderNo,plateId)}>
                                       <img src={ImgUrlPlt} alt={''} />
@@ -597,7 +621,9 @@ class DialogCheckoutCart extends Component {
     this.state = {
       visible :false,
       tipView:true,
-      tip:0
+      ConfirmView:false,
+      tip:0,
+      rangeTip:0
     };
   }
 
@@ -616,7 +642,7 @@ class DialogCheckoutCart extends Component {
   }
   
   updTip(t) {
-    this.setState({tip:t});
+    this.setState({tip:t,rangeTip:t});
   } 
 
   EditView() {
@@ -627,58 +653,137 @@ class DialogCheckoutCart extends Component {
     this.setState({tipView:false});
   } 
 
+  handleTipRangeChange(e) {
+    var _value = parseFloat((e.target.value).toString());    
+    this.setState({tip:_value});
+    this.setState({tip:_value,rangeTip:_value});
+  } 
+
+  handleTipRangeBlur(e) {    
+    this.setState({rangeTip:this.state.tip});
+  } 
+
+  HandleCheckOutConfirm(){
+    this.setState({ConfirmView:true});
+  }
+
+  handlerInputValue(){
+
+
+  }
+
+  updConfirmMethod(v){
+    this.setState({confirmMethod:v});
+  }
+
+
+  HandleSubmitOrder(){
+    const {itemOnCart, forms} = this.props;
+    var _frmName = forms && forms[InfoUserFromName]?forms[InfoUserFromName]:{};
+    let cart = {
+      id:Util.genId(),
+      date:(new Date()).getTime(),
+      tip:this.state.tip,
+      items:itemOnCart,
+      info:_frmName
+    }
+    this.props.actions.UpdateFormbyName('orderSuccess',cart);
+    this.props.actions.UpdateFormbyName(cartFormName,{});
+    Print2.PrintReceiptOrder(cart);
+    this.closeView();
+  }
+
+
   
   render(){
-    const {item, id, itemOnCart, thumbnailJsonBlobObserve} = this.props;
+    const {forms, id, itemOnCart, isMobile, thumbnailJsonBlobObserve} = this.props;
     
     let style2Print = {"--printcolor-error-light":'#e6f4ea',"--printcolor-error-text":"#34a853"};    
     let style2PrintError = {"--printcolor-error-light":'#fce8e6',"--printcolor-error-text":"#ea4335"};
-    let total = calcTotalCart(itemOnCart);
-    console.log(itemOnCart)
+    let amount = Util.calcTotalCart(itemOnCart);
+    let total = amount && (amount + amount*0.06);
+    var _frmName = forms && forms[InfoUserFromName]?forms[InfoUserFromName]:{}; 
+   
     return(
-          <div  className={`_dialog_add_tip ${this.state.tipView?'':'_checkList_'}`} style={style2PrintError}> 
+          <div is-mobile={isMobile?'true':'false'} className={`_dialog_add_tip ${isMobile?'isMobile':''} ${this.state.tipView?'':'_checkList_'}`} style={style2PrintError}> 
             <div  className={`_dialog_add_tip_header`} >
-              {this.state.tipView?` Add Tip `:`CheckOut`}
+              {this.state.tipView?` Add Tip `:this.state.ConfirmView?`Confirm`:`CheckOut`}
             </div>
-            {this.state.tipView? <div className={`_body_`}>
+            {this.state.tipView? 
+            <div className={`_body_ tipView`}>
               <div className={`_dialog_add_tip_totals`}>
                 <div className={`_dialog_add_tip_totals_wrp`}>
                   <div className={`_total_items`}>
-                    <p>Sub Total</p>
-                    <span>${total?total.toFixed(2):0.00}</span>
+                    <p>Amount</p>
+                    <span>${amount?amount.toFixed(2):0.00}</span>
                   </div>           
                   <div className="flexSpace"/>
                   <div className={`_total_items`}>
                     <p>Total</p>
-                    <span>${total?(total + total*0.06).toFixed(2):0.00}</span>
+                    <span>${total?total.toFixed(2):0.00}</span>
                   </div>
                 </div>
               </div>
               <div className={`_dialog_add_tip_amount`}>
                 ${this.state.tip.toFixed(2)}
               </div>
+              <div className={`_dialog_add_tip_range`}>
+                <input type="range" min="1" max="25" step="0.25" class="slider" id="myRange" value={this.state.rangeTip} onChange={this.handleTipRangeChange.bind(this)} onMouseUp={this.handleTipRangeBlur.bind(this)}/>
+              </div>
+              
+
               <div className={`_dialog_add_tip_btns`}>
                   <div className={`_tip_box_`} onClick={this.updTip.bind(this,0)}>
                     <p>cash</p>
                   </div>
-                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,(total + total*0.06)*.15)}>
-                    <p>${total?((total + total*0.06)*.15).toFixed(2):0.00}</p>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,amount*.15)}>
+                    <p>${amount?(amount*.15).toFixed(2):0.00}</p>
                     <p>15%</p>
                   </div>
-                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,(total + total*0.06)*.2)}>
-                    <p>${total?((total + total*0.06)*.2).toFixed(2):0.00}</p>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,amount*.2)}>
+                    <p>${amount?(amount*.2).toFixed(2):0.00}</p>
                     <p>20%</p>
                   </div>
-                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,(total + total*0.06)*.3)}>
-                    <p>${total?((total + total*0.06)*.3).toFixed(2):0.00}</p>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,amount *.3)}>
+                    <p>${amount?(amount *.3).toFixed(2):0.00}</p>
                     <p>30%</p>
                   </div>
               </div>
             </div>
+            :this.state.ConfirmView?
+              <div className={`_body_ confirmView`}>
+                <div className={`_dialog_add_tip_range`}>                  
+                  <InputText icon={`textFormat`} form={InfoUserFromName} field={`name`} minLength={3} placeholder={'Name'} OnChange={this.handlerInputValue.bind(this,`name`)}  initvalue={_frmName[`name`]}/>
+                </div>
+                <div>
+                <div className={`_total_items`}>
+                    <p>Choose a way to send your receipt?</p>
+                </div>
+                <div className={`_dialog_add_tip_btns`}>
+                  <div className={`_tip_box_ ${this.state.confirmMethod==="email"?"_active":""}`} onClick={this.updConfirmMethod.bind(this,'email')}>                    
+                    <Icons name={'email'} color={'#555'} size={26}/>
+                    <p>Email</p>
+                  </div>
+                  <div className={`_tip_box_ ${this.state.confirmMethod==="phone"?"_active":""}`} onClick={this.updConfirmMethod.bind(this,'phone')}>
+                    <Icons name={'cellphone'} color={'#555'} size={26}/>
+                    <p>Phone</p>
+                  </div>                  
+                </div>
+                {this.state.confirmMethod==="phone"?
+                <div className={`_dialog_add_tip_range`}>
+                  <InputText icon={`textFormat`} form={InfoUserFromName} field={`phoneNumber`} phone={true} placeholder={'Phone Number'} OnChange={this.handlerInputValue.bind(this,`phoneNumber`)}  initvalue={_frmName[`phoneNumber`]}/>
+                </div>:null}
+                {this.state.confirmMethod==="email"?
+                <div className={`_dialog_add_tip_range`}>
+                  <InputText icon={`textFormat`} form={InfoUserFromName} field={`email`} email={true} placeholder={'Email'} OnChange={this.handlerInputValue.bind(this,`email`)}  initvalue={_frmName[`email`]}/>
+               </div>
+               :null}
+                </div>
+            </div>
             :
             <div className={`_body_ `}>
                 <div>
-                  { Object.keys(itemOnCart).map(orderId=>{
+                  { itemOnCart && Object.keys(itemOnCart).map(orderId=>{
                     return (
                       <div key={orderId} className={`_order_`}>
                       {
@@ -690,7 +795,7 @@ class DialogCheckoutCart extends Component {
                           return (
                             <div  key={pltId} className={`_order_detail_`}>
                               <div  className={`_order_detail_item`}>
-                                <span>{pltItem.qty>1?pltItem.qty:''} {sizeKey} {pltItem.name} </span> 
+                                <span>{pltItem.qty>1?pltItem.qty:''} {sizeKey?sizeKey!=='*'?sizeKey:null:null} {pltItem.name} </span> 
                                 <div className="flexSpace"/>
                                 <div className={'_price'}>{(amount*pltItem.qty).toFixed(2)}</div>
                               </div>
@@ -698,7 +803,6 @@ class DialogCheckoutCart extends Component {
                                 {
                                   _extras && Object.keys(_extras).map(extId=>{
                                     let extrDetails = _extras[extId];
-                                    console.log(extrDetails.qty)
                                     return(
                                       <div key={extId}  className={'_extras_Items_'}>
                                   {extrDetails.qty<0?<p>{`no ${extId}`}</p>:<p>{extId} {extrDetails.qty>0?extrDetails.price>0?`  $${extrDetails.price*extrDetails.qty}`:'':''}</p>}
@@ -723,7 +827,7 @@ class DialogCheckoutCart extends Component {
                   <div className={`_checkout_totals`}>
                     <div className="flexSpace"/>
                     <div className={`_checkout_totals_item`}>
-                    <span>Amount</span>  <p>{total.toFixed(2)}</p>
+                    <span>Amount</span>  <p>{amount.toFixed(2)}</p>
                     </div>
                   </div>
                   {
@@ -739,18 +843,314 @@ class DialogCheckoutCart extends Component {
                   <div className={`_checkout_totals`}>
                     <div className="flexSpace"/>
                     <div className={`_checkout_totals_item`}>
-                    <span>Tax (6%)</span>  <p>{((total)*.06).toFixed(2)}</p>
+                    <span>Tax (6%)</span>  <p>{(amount*.06).toFixed(2)}</p>
                     </div>
                   </div>
                   <div className={`_checkout_totals`}>
                     <div className="flexSpace"/>
                     <div className={`_checkout_totals_item`}>
-                    <span>Total</span>  <p>{((total+this.state.tip) + (total*.06)).toFixed(2)}</p>
+                    <span>Total</span>  <p>{(total+this.state.tip).toFixed(2)}</p>
                     </div>
                   </div>
                 </div>
             </div>
             }
+            <div  className={`_actions_`}>             
+              <div className="flexSpace"/>
+              <div className={'__save__btn '}>
+              <NavLink to={{pathname: '/restaurant', search:`?vId=${id}&tb=cart`}}  onClick={this.closeView.bind(this)}>
+                <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#777'}}>
+                  <div className="hoverDiv grayStyle "/>
+                  <span className="text2D grayStyle">{'Cancel'}</span>              
+                </div> 
+                </NavLink>
+              </div>
+              {this.state.tipView? 
+              <div className={'__save__btn'} >
+                  <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#4d4d4d'}}  onClick={this.HandleContinue.bind(this,id)}>
+                    <div className="hoverDiv orangeFlex "/>
+                    <span className="text2D orangeFlex">{`Continue`}</span>
+                  </div> 
+                </div>:
+                this.state.ConfirmView?
+                <div className={'__save__btn'} >
+                  <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#4d4d4d'}}  onClick={this.HandleSubmitOrder.bind(this,id)}>
+                    <div className="hoverDiv orangeFlex "/>
+                    <span className="text2D orangeFlex">{`Submit Order`}</span>
+                  </div> 
+                </div>:
+                <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#4d4d4d'}}  onClick={this.HandleCheckOutConfirm.bind(this,id)}>
+                    <div className="hoverDiv orangeFlex "/>
+                    <span className="text2D orangeFlex">{`Checkout`}</span>
+                </div>}
+            </div>         
+          </div>
+      )
+  
+  }
+}
+
+
+
+
+const DialogCheckoutCartRX = connect(mapStateToProps, mapDispatchToProps)(DialogCheckoutCart);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  HandleCheckOutConfirmDialog(){
+    const { itemOnCart, isMobile } = this.props;
+    let formName = `cart_checkout${Util.generateUUID()}`;   
+    let _id = Util.Base64.encode(`_${formName}_`); 
+   
+   this.closeView();
+    let _cont = 
+    <DialogCheckoutConfirmRX
+      close={this.close_DialogView.bind(this,_id)} 
+      itemOnCart={itemOnCart}
+      tip={this.state.tip}
+      //confirm={this.ConfirmDelete.bind(this,_id)}
+    />
+    let options = {id:_id,zIndex:700,height:'550px',width:'450px',content:_cont};
+    if(isMobile){
+      this.props.dialogActions.OpenView(options);
+    }else{
+      this.props.dialogActions.OpenDialog(options);
+    }
+    
+  }
+
+
+  close_DialogView(id){ 
+    var _th = this;        
+    const { isMobile } = _th.props; 
+    var options = {id:id};
+    if(isMobile){
+      _th.props.dialogActions.CloseView(options); 
+    }else{
+      _th.props.dialogActions.CloseDialog(options); 
+    } 
+    
+    
+  }
+*/
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+class DialogCheckoutConfirm extends Component {
+  constructor(props) {
+    super(props);  
+    this.state = {
+      visible :false,
+      tipView:true,
+      tip:0,
+      rangeTip:0
+    };
+  }
+
+  componentDidMount() {  
+   
+  } 
+
+  closeView(){  
+    if(typeof this.props.close === "function"){
+      this.props.close()
+    }
+  }
+
+  HandleConfirm(){    
+    this.setState({tipView:false});
+  }
+  
+  updTip(t) {
+    this.setState({tip:t,rangeTip:t});
+  } 
+
+  EditView() {
+    this.setState({editView:!this.state.editView});
+  } 
+
+  HandleContinue() {
+    this.setState({tipView:false});
+  } 
+
+  handleTipRangeChange(e) {
+    var _value = parseFloat((e.target.value).toString());    
+    this.setState({tip:_value});
+    this.setState({tip:_value,rangeTip:_value});
+  } 
+
+  handleTipRangeBlur(e) {    
+    this.setState({rangeTip:this.state.tip});
+  } 
+  
+  render(){
+    const {item, id, itemOnCart, isMobile, thumbnailJsonBlobObserve} = this.props;
+    
+    let style2Print = {"--printcolor-error-light":'#e6f4ea',"--printcolor-error-text":"#34a853"};    
+    let style2PrintError = {"--printcolor-error-light":'#fce8e6',"--printcolor-error-text":"#ea4335"};
+    let amount = calcTotalCart(itemOnCart);
+    let total = amount && (amount + amount*0.06);
+
+    return(
+          <div is-mobile={isMobile?'true':'false'} className={`_dialog_add_tip ${isMobile?'isMobile':''} ${this.state.tipView?'':'_checkList_'}`} style={style2PrintError}> 
+            <div  className={`_dialog_add_tip_header`} >
+              {`Confirm`}
+            </div>
+            <div className={`_body_ tipView`}>
+              <div className={`_dialog_add_tip_totals`}>
+                <div className={`_dialog_add_tip_totals_wrp`}>
+                  <div className={`_total_items`}>
+                    <p>Amount</p>
+                    <span>${amount?amount.toFixed(2):0.00}</span>
+                  </div>           
+                  <div className="flexSpace"/>
+                  <div className={`_total_items`}>
+                    <p>Total</p>
+                    <span>${total?total.toFixed(2):0.00}</span>
+                  </div>
+                </div>
+              </div>
+              <div className={`_dialog_add_tip_amount`}>
+                ${this.state.tip.toFixed(2)}
+              </div>
+              <div className={`_dialog_add_tip_range`}>
+                <input type="range" min="1" max="25" step="0.25" class="slider" id="myRange" value={this.state.rangeTip} onChange={this.handleTipRangeChange.bind(this)} onMouseUp={this.handleTipRangeBlur.bind(this)}/>
+              </div>
+              
+
+              <div className={`_dialog_add_tip_btns`}>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,0)}>
+                    <p>cash</p>
+                  </div>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,amount*.15)}>
+                    <p>${amount?(amount*.15).toFixed(2):0.00}</p>
+                    <p>15%</p>
+                  </div>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,amount*.2)}>
+                    <p>${amount?(amount*.2).toFixed(2):0.00}</p>
+                    <p>20%</p>
+                  </div>
+                  <div className={`_tip_box_`} onClick={this.updTip.bind(this,amount *.3)}>
+                    <p>${amount?(amount *.3).toFixed(2):0.00}</p>
+                    <p>30%</p>
+                  </div>
+              </div>
+            </div>
+            
+            {false?
+            <div className={`_body_ `}>
+                <div>
+                  { Object.keys(itemOnCart).map(orderId=>{
+                    return (
+                      <div key={orderId} className={`_order_`}>
+                      {
+                        Object.keys(itemOnCart[orderId]).map(pltId=>{
+                          let pltItem =  itemOnCart[orderId][pltId]
+                          let sizeKey = itemOnCart[orderId][pltId]['size'] && Object.keys(itemOnCart[orderId][pltId]['size'])[0];
+                          let amount = itemOnCart[orderId][pltId]['size'][sizeKey];
+                          let _extras = itemOnCart[orderId][pltId]['extras'];
+                          return (
+                            <div  key={pltId} className={`_order_detail_`}>
+                              <div  className={`_order_detail_item`}>
+                                <span>{pltItem.qty>1?pltItem.qty:''} {sizeKey?sizeKey!=='*'?sizeKey:null:null} {pltItem.name} </span> 
+                                <div className="flexSpace"/>
+                                <div className={'_price'}>{(amount*pltItem.qty).toFixed(2)}</div>
+                              </div>
+                              <div className={'_extras_'}>
+                                {
+                                  _extras && Object.keys(_extras).map(extId=>{
+                                    let extrDetails = _extras[extId];
+                                    return(
+                                      <div key={extId}  className={'_extras_Items_'}>
+                                  {extrDetails.qty<0?<p>{`no ${extId}`}</p>:<p>{extId} {extrDetails.qty>0?extrDetails.price>0?`  $${extrDetails.price*extrDetails.qty}`:'':''}</p>}
+                                        <div className="flexSpace"/>
+                                        {extrDetails.qty>=0?extrDetails.price>0?<div className={'_price'}>{((extrDetails.price*extrDetails.qty)*pltItem.qty).toFixed(2)}</div>:null:null}
+                                      </div>
+                                    )
+                                  })
+                                }
+                              </div>
+                            
+                            </div>
+                          )
+                        })
+                      } 
+                      </div>
+                    )
+                  })}  
+                </div>
+                <div className={`_separator_`}/> 
+                <div  className={`_checkout_totals_wrp`}>
+                  <div className={`_checkout_totals`}>
+                    <div className="flexSpace"/>
+                    <div className={`_checkout_totals_item`}>
+                    <span>Amount</span>  <p>{amount.toFixed(2)}</p>
+                    </div>
+                  </div>
+                  {
+                    this.state.tip?
+                    <div className={`_checkout_totals`}>
+                    <div className="flexSpace"/>
+                    <div className={`_checkout_totals_item`}>
+                      <span>Tip</span> <p>{this.state.tip.toFixed(2)}</p>
+                    </div>
+                  </div>:null
+                  }
+                  
+                  <div className={`_checkout_totals`}>
+                    <div className="flexSpace"/>
+                    <div className={`_checkout_totals_item`}>
+                    <span>Tax (6%)</span>  <p>{(amount*.06).toFixed(2)}</p>
+                    </div>
+                  </div>
+                  <div className={`_checkout_totals`}>
+                    <div className="flexSpace"/>
+                    <div className={`_checkout_totals_item`}>
+                    <span>Total</span>  <p>{(total+this.state.tip).toFixed(2)}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            :null}
             <div  className={`_actions_`}>             
               <div className="flexSpace"/>
               <div className={'__save__btn '}>
@@ -783,54 +1183,20 @@ class DialogCheckoutCart extends Component {
 
 
 
-const DialogCheckoutCartRX = connect(mapStateToProps, mapDispatchToProps)(DialogCheckoutCart);
+const DialogCheckoutConfirmRX = connect(mapStateToProps, mapDispatchToProps)(DialogCheckoutConfirm);
 
 
 
 
 
-function calcTotal(itemOnCart, id,orderId){  
-  let value = 0;
-  let currentOrder = itemOnCart && itemOnCart[orderId] && itemOnCart[orderId][id]  && itemOnCart[orderId][id];
-  let currentSize = currentOrder && currentOrder['size'];
-  let valueOrder = 0;
-  let QtyOrder = currentOrder && currentOrder['qty'];
-  let currentSizeKey = currentSize && Object.keys(currentSize)[0];  
-  let valeSize = currentSizeKey && currentSize[currentSizeKey]?currentSize[currentSizeKey]:0;
-  valueOrder += valeSize;
-  currentOrder && currentOrder['extras']   && Object.keys(currentOrder['extras']).map(_ext=>{
-    let _extQty = currentOrder['extras'][_ext]['qty']?currentOrder['extras'][_ext]['qty']:0;
-    let _price = currentOrder['extras'][_ext]['price']?currentOrder['extras'][_ext]['price']:0;
-    if(_extQty>0){
-      valueOrder += _price*_extQty; 
-    }          
-  })
-  value = valueOrder * QtyOrder;
-  return value;
-}
 
 
-function calcTotalCart(itemOnCart){
-  let value = 0;
-  itemOnCart && Object.keys(itemOnCart).map(orderId=>{
-    let valueOrder = 0;
-    let QtyOrder = 1;
-    Object.keys(itemOnCart[orderId]).map(id=>{
-      let currentOrder = itemOnCart && itemOnCart[orderId] && itemOnCart[orderId][id]  && itemOnCart[orderId][id];
-      let currentSize = currentOrder && currentOrder['size'];
-      QtyOrder = currentOrder && currentOrder['qty'];
-      let currentSizeKey = currentSize && Object.keys(currentSize)[0];  
-      let valeSize = currentSizeKey && currentSize[currentSizeKey]?currentSize[currentSizeKey]:0;
-      valueOrder += valeSize;
-      currentOrder && currentOrder['extras']   && Object.keys(currentOrder['extras']).map(_ext=>{
-        let _extQty = currentOrder['extras'][_ext]['qty']?currentOrder['extras'][_ext]['qty']:0;
-        let _price = currentOrder['extras'][_ext]['price']?currentOrder['extras'][_ext]['price']:0;
-        if(_extQty>0){
-          valueOrder += _price*_extQty; 
-        }          
-      })
-    })
-    value += valueOrder * QtyOrder;
-  })
-  return value;
-}
+
+*/
+
+
+
+
+
+
+

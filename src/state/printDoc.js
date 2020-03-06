@@ -6,6 +6,265 @@ const monthsList_Short =[`Jan`,`Feb`,`Mar`,`Apr`,`May`,`Jun`,`Jul`,`Aug`,`Sep`,`
 const jsPDF = window.jsPDF;
 
 
+//The A4 size print measures 21.0 x 29.7cm, 8.27 x 11.69 inches, if mounted 30.3 x 40.6cm, 11.93 x 15.98 inches.
+
+// [595.28, 841.89] 8.27 = 595.28
+
+// 1 inch 72
+
+// Size in pt of various paper formats
+var pageFormats = {
+      a0: [2383.94, 3370.39],
+      a1: [1683.78, 2383.94],
+      a2: [1190.55, 1683.78],
+      a3: [841.89, 1190.55],
+      a4: [595.28, 841.89],
+      a5: [419.53, 595.28],
+      a6: [297.64, 419.53],
+      a7: [209.76, 297.64],
+      a8: [147.4, 209.76],
+      a9: [104.88, 147.4],
+      a10: [73.7, 104.88],
+      b0: [2834.65, 4008.19],
+      b1: [2004.09, 2834.65],
+      b2: [1417.32, 2004.09],
+      b3: [1000.63, 1417.32],
+      b4: [708.66, 1000.63],
+      b5: [498.9, 708.66],
+      b6: [354.33, 498.9],
+      b7: [249.45, 354.33],
+      b8: [175.75, 249.45],
+      b9: [124.72, 175.75],
+      b10: [87.87, 124.72],
+      c0: [2599.37, 3676.54],
+      c1: [1836.85, 2599.37],
+      c2: [1298.27, 1836.85],
+      c3: [918.43, 1298.27],
+      c4: [649.13, 918.43],
+      c5: [459.21, 649.13],
+      c6: [323.15, 459.21],
+      c7: [229.61, 323.15],
+      c8: [161.57, 229.61],
+      c9: [113.39, 161.57],
+      c10: [79.37, 113.39],
+      dl: [311.81, 623.62],
+      letter: [612, 792],
+      "government-letter": [576, 756],
+      legal: [612, 1008],
+      "junior-legal": [576, 360],
+      ledger: [1224, 792],
+      tabloid: [792, 1224],
+      "credit-card": [153, 243]
+    };
+
+
+
+
+export function PrintReceiptOrder(data){
+
+  var nR = 0;
+  var LImT = 28;
+  //200 max on portrait;
+
+//  inches * 72
+
+const {id, date, tip, items, info} = data;
+
+let totalCart =  Util.calcTotalCart(items);
+
+var doc = new jsPDF({ orientation: 'portrait', unit: '',  format:[216.28, 1007.89] }) 
+  
+  
+  // var doc = new jsPDF('p', 'in', [(3*72), 1008]);
+  // var doc = new jsPDF('p', 'in', [3, 14]);
+  /*
+
+  let v20 = Array.from(Array(220).keys());   
+  v20.map(cl=>{
+    if(cl%10===0){
+      doc.setFontSize(10);
+      doc.text(cl, 3, '|');
+      console.log(cl)
+      doc.setFontSize(6);
+      doc.text(cl, 5, (cl).toString());
+    }else{
+      doc.setFontSize(10);
+      console.log(cl)
+      doc.text(cl, 1, '.');
+    }
+  })
+  
+
+  */
+  let yguide = 3;
+  let title = `Receipt ${id} `;
+
+
+  doc.setFont("Roboto");
+  doc.setFontType("normal");
+  doc.setTextColor(60,60,60);
+  doc.setFontSize(20);
+  doc.text(10, yguide+8, `${title}`);
+  doc.setFontSize(16);
+  doc.text(150, yguide+26, `${Util.date2pretyfy2(date)} ${Util.time2pretyfy2(date)}`);
+  doc.setFillColor(30, 30, 30);
+
+
+  let plateYPosition = yguide + 40;
+
+  items && Object.keys(items).map((orderId,indOrd)=>{   
+    let count = 0;
+    items[orderId] && Object.keys(items[orderId]).map((pltId)=>{
+      let pltItem =  items[orderId][pltId]
+      let sizeKey = items[orderId][pltId]['size'] && Object.keys(items[orderId][pltId]['size'])[0];
+      let amount = items[orderId][pltId]['size'][sizeKey];
+      let _extras = items[orderId][pltId]['extras'];      
+      doc.setFontSize(22);
+      doc.setFontType("bold");
+      doc.text(16, plateYPosition+5, `${pltItem.qty>1?pltItem.qty:''} ${sizeKey?sizeKey!=='*'?sizeKey:'':''} ${pltItem.name}`);
+      doc.text(180, plateYPosition+5, `${(amount*pltItem.qty).toFixed(2)}`);
+      plateYPosition += 14;
+      _extras && Object.keys(_extras).map(extId=>{
+        let extrDetails = _extras[extId];
+        doc.setFontSize(18);        
+        doc.setFontType("normal");
+        let extrname =  extrDetails.qty<0?`no ${extId}`:`${extId} ${extrDetails.qty>0?extrDetails.price>0?`$${extrDetails.price*extrDetails.qty}`:'':''}`;
+        let extrprice =  extrDetails.qty>=0?extrDetails.price>0?`${((extrDetails.price*extrDetails.qty)*pltItem.qty).toFixed(2)}`:'':'';
+        doc.text(29, plateYPosition+5,extrname);
+        doc.text(180, plateYPosition+5, extrprice);    
+        plateYPosition += 9;     
+      })          
+    })
+  })
+
+  var totalize = plateYPosition + 16;
+  var labelX = 140;
+  doc.setFontSize(20);        
+  doc.setFontType("normal");
+  doc.text(labelX, totalize+8, 'Amount');   
+  doc.text(180, totalize+8,`${totalCart.toFixed(2)}`);
+  totalize += 10;
+  if(tip){
+    doc.text(labelX, totalize+8, 'Tip');
+    doc.text(180, totalize+8,`${tip.toFixed(2)}`);
+    totalize += 10;
+  }
+  doc.text(labelX, totalize+8, 'Tax(6%)');
+  doc.text(180, totalize+8, `${(totalCart*0.06).toFixed(2)}`);
+  totalize += 10;   
+  doc.setFontType("bold"); 
+  doc.text(labelX, totalize+8, 'Total');
+  doc.text(180, totalize+8, `${(totalCart + totalCart*0.06).toFixed(2)}`);
+  totalize += 10;
+
+/*
+
+  numPagesIngresos.map(pg=>{
+    if(pg>0){
+      doc.addPage();
+    }
+    let start = pg*LImT;
+    let limit = start+LImT;
+    let Klist = [];
+    for(var x = start;x<limit;x++){
+      if(sumaryIngresos[x]){
+        Klist.push(sumaryIngresos[x])
+      }        
+    }     
+    
+    let utilTotal = totalCart.toFixed(2);
+    let yguide = 3;
+    let title = `Report`;
+    
+
+
+
+    doc.setFontSize(14);
+    doc.setFont("Roboto");
+    doc.setFontType("normal");
+    doc.setTextColor(60,60,60);
+    doc.setFontSize(17);	
+    doc.text(10, yguide+10, `${title}  ${category?categories[category].name:month}, ${year}`);
+    doc.setFillColor(30, 30, 30);
+    doc.setDrawColor(30, 30, 30);       
+    doc.setLineWidth(0.05);
+    var headerheight  = yguide+20;
+    doc.line(10, headerheight+2, 200, headerheight+2);
+    doc.setFontType("bold");
+    doc.setFontSize(11);      
+    doc.text(10,headerheight, 'Fecha');
+    doc.text(30, headerheight, 'Importe');  
+    doc.text(62, headerheight, 'Categorias');
+    doc.text(112, headerheight, 'Detalles');    
+    Klist.map((m,i)=>{   
+      doc.setTextColor(0,0,0);
+      var dtC = new Date(parseInt(m.date));
+      var mes = Util.parseDateShort(parseInt(m.date));         
+      var _titleCategory = m.group && categories[m.group] && categories[m.group].name;
+      var _description = m.title || '';
+      
+      if(_description && _description.length>60){
+        _description = m.description.substring(0,60)+`...`
+      }
+      doc.setFont("arial");
+      doc.setFontType("normal");
+      //if(_title.length>65){     _title = m.title.substring(0,60)+`...`   }
+      var utility = parseFloat(m.import).toFixed(2);                          
+      nR = (i+1)*8+headerheight+9;   
+      // doc.setDrawColor(204, 204, 204);       
+      // doc.setLineWidth(0.025);
+      // doc.line(10, nR, 200, nR); 
+      doc.setFontSize(10);
+      //doc.text(100, nR-7, 'fhwreywvy');
+      doc.text(9, nR-7, mes);
+      //var utP = 193-utility.length;
+      doc.text(29, nR-7,utility);        
+      doc.text(60, nR-7, _titleCategory);
+      doc.text(110, nR-7, _description);   
+      //doc.text(10, nR-2, _description); 
+    })   
+    if(Klist.length>0){
+      let ttGby = Util.sumArraybyKey(Klist,`import`)
+      doc.setFontSize(14);	
+      doc.text(145, nR+20, `SubTotal`);
+      doc.text(180, nR+20, `${ttGby}`);   
+      if(pg>=numPagesIngresos.length-1){
+        doc.setFontSize(14);
+        doc.setLineWidth(0.25);
+        doc.line(143, nR+22, 200, nR+22);
+        doc.text(145, nR+28, `Total`);
+        doc.text(180, nR+28, `${utilTotal}`); 
+      }
+    }
+    
+  })
+*/
+  
+
+
+
+
+  doc.save(` ${id}_receipt_${(new Date()).getTime()}_${Util.generateUUID()}.pdf`);
+  //doc.autoPrint();  window.open(doc.output('bloburl'), '_blank'); 
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export function PrintMonthResume2(data,total,categories,month,year,category){
@@ -116,6 +375,13 @@ export function PrintMonthResume2(data,total,categories,month,year,category){
   //doc.autoPrint();  window.open(doc.output('bloburl'), '_blank'); 
   
 }
+
+
+
+
+
+
+
 
 
 

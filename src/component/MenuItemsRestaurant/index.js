@@ -289,7 +289,8 @@ class MenuItemsRestarant extends Component {
                           minHeight: `250px`
                       };
                       }
-
+                      let ImgUrlLogo = item2Show.picture; 
+                      let ImgUrl = commonActions.getBlobImage(ImgUrlLogo) || ImgUrlLogo;
                       return(
                         <div className={`menu_items_  _child_${ind_2+1} ${show?'show':'hide'}`} item-plate={`${itm}`} style={{}}>
                           <style>
@@ -310,7 +311,7 @@ class MenuItemsRestarant extends Component {
                           `}
                           </style>
                           <div className={`details ${itm === itmActive?"show":"hide"}`} onClick={this.showItem.bind(this,itm,groupActive)}>                            
-                            <img src={item2Show.picture} alt={'logo'} height={160} width={160} img-item-plate={`${itm}`}/>                           
+                            <img src={ImgUrl} alt={'logo'} height={160} width={160} img-item-plate={`${itm}`}/>                           
                             <div className="title_text" title-item-plate={`${itm}`}>
                               {item2Show.name}
                             </div>

@@ -329,15 +329,14 @@ class MobileOnlineRestarant extends Component {
       let data =  commonActions.data;
       var s = Util.parseQuery(location.search); 
       var isInCart = s.tb==="cart"?true:false; 
-
       var isInMenu = s.tb==="menu"?true:false; 
-           
+      var isInAccount = s.tb==="account"?true:false;
       var _item2cart = forms[cartFormName];   
       var options = Object.keys(data);
       var _list = data && data[this.state.groupActive] && data[this.state.groupActive]['list']?data[this.state.groupActive]['list']:{};
       
       return (
-          <div isMobile={`${isMobile}`} className={``}>
+          <div is-mobile={`${isMobile}`} className={``}>
             {false?
             <div className={'header_title_group'}>
               <h3>{isInCart?'CART':this.state.groupActive?this.state.groupActive:"MENU"}</h3> 
@@ -371,7 +370,7 @@ class MobileOnlineRestarant extends Component {
                     </div>
                   </NavLink>
                   <NavLink to={{pathname: '/restaurant', search:`?tb=account`}}>
-                    <div className={`_tab_Bar_`} >
+                    <div className={`_tab_Bar_ ${isInAccount?'_activeTab':''}`} >
                       <div className={`_tab_Bar_Icon_`} >
                         <Icons name={'account'} color={'#555'} size={30}/> 
                       </div>
@@ -387,7 +386,8 @@ class MobileOnlineRestarant extends Component {
             {!isInCart && isInMenu && <div className={`${this.state.groupActive?'':`_flexDisplay_ _flexWrapDisplay_ `}_body_menu_`}> 
              {options.map(title=>{
               var _extras = data && data[this.state.groupActive] && data[this.state.groupActive]['extras']?data[this.state.groupActive]['extras']:null;           
-              let ImgUrl = data && data[title] && data[title]['logo']; 
+              let ImgUrlLogo = data && data[title] && data[title]['logo']; 
+              let ImgUrl = commonActions.getBlobImage(ImgUrlLogo) || ImgUrlLogo; 
               return(
                 <div  className={`_cart_item_sub_ `} style={{"--dimention_sub_ingredients--": '125px'}}>
                   {!this.state.groupActive?<div>

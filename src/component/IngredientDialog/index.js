@@ -107,10 +107,10 @@ class IngredientDialog extends Component {
 
   
   render(){
-    const {item,id, thumbnailJsonBlobObserve} = this.props;
+    const {item,id, thumbnailJsonBlobObserve, isMobile} = this.props;
     let ImgUrl = commonActions.getBlobImage(item.picture)
     return(
-        <div  className={`_dialog_ingredient_edit`} >
+        <div is-mobile={isMobile?'true':'false'} className={`_dialog_ingredient_edit`} >
           <h5>Add or Remove <span>{id}</span></h5>
           <div  className={`_details_`}>            
             <div className={`_bottom_wrp`}>

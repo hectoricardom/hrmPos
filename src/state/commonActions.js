@@ -1953,11 +1953,7 @@ export const extrasOptions = {
     "broccoli":{
       price:0,
       picture:rawGithub+'broccoli_small.png',
-    }, 
-    "garlic":{
-      price:0,
-      picture:rawGithub+'garlic_small.png',
-    },  
+    }  
   },   
   meats:{
     "shrimp":{
@@ -1985,6 +1981,10 @@ export const extrasOptions = {
     "black pepper":{
       price:0,
       picture: rawGithub+'black_pepper_small.png',
+    },
+    "garlic":{
+      price:0,
+      picture:rawGithub+'garlic_small.png',
     },
   },
 
@@ -2033,11 +2033,14 @@ export function Image2Caching(url) {
       _ImagesList = {};
     }
     if(param && !_ImagesList[param]){    
-      //_ImagesList[param] = null;
+      if(!_ImagesList[param]){
+        _ImagesList[param] = {};
+      }
+      dispatch(UpdKeyValue({key:'blobImagesList',value:_ImagesList}));
       var xhr = new XMLHttpRequest();
         xhr.open( "GET", url, true );
         xhr.responseType = "arraybuffer";
-        xhr.onload = function( e ) {
+        xhr.onload = function( e ) {         
           if (xhr.status === 200) {
             var arrayBufferView = new Uint8Array( this.response );              
             if(arrayBufferView.length>200){
@@ -2045,14 +2048,17 @@ export function Image2Caching(url) {
               var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
               var urlCreator = window.URL || window.webkitURL;
               var imageUrl = urlCreator.createObjectURL(blob); 
-              if(!_ImagesList[param]){
-                _ImagesList[param] = {};
-              }             
+                           
               //_ImagesList[param].buffer = base64String;
               _ImagesList[param]['blob'] = imageUrl;   
               dispatch(UpdKeyValue({key:'blobImagesList',value:_ImagesList}));
               dispatch(UpdKeyValue({key:'thumbnailJsonBlobObserve',value:(new Date()).getTime()}));
             } 
+          }
+          else{
+            _ImagesList[param]['blob'] = url;
+            dispatch(UpdKeyValue({key:'blobImagesList',value:_ImagesList}));
+            dispatch(UpdKeyValue({key:'thumbnailJsonBlobObserve',value:(new Date()).getTime()}));
           }             
         };  
       xhr.send();    
@@ -2063,12 +2069,12 @@ export function Image2Caching(url) {
 
 export const data = {
   appetizer:{
-    logo:"https://p.kindpng.com/picc/s/425-4253452_download-enjoy-your-favorites-with-the-appetizer-sampler.png",    
+    logo: rawGithub+'appetizer2.png',    
     list:{
       y0872ty6n3f:{
-        name:"bread",
+        name:"toast",
         price:0.55,
-        picture:'https://www.budgetbytes.com/wp-content/uploads/2010/03/Homemade-Garlic-Bread-front-500x500.jpg'
+        picture:rawGithub+'toast_bread.png'
         ,
         size:{
           small:0.55,
@@ -2078,7 +2084,7 @@ export const data = {
       y0f72tjln3f:{
         name:"brownie",
         price:3.05,
-        picture:'https://www.clipartkey.com/mpngs/m/43-432775_thanksgiving-clipart-charlie-brown-transparent-background-brownie-png.png',
+        picture:rawGithub+'brownies.png',
         size:{
           small:3.05,
           large:5.85
@@ -2087,12 +2093,12 @@ export const data = {
     }
   },
   lunchs:{
-    logo:"https://www.pngfind.com/pngs/m/331-3311656_plate-lunch-hd-png-download.png",
+    logo: rawGithub+'lunch.png',
     list:{
       y0872Fr7s_6n3f:{
         name:"fried rice",
         price:3.75,
-        picture:'https://www.pngfind.com/pngs/m/637-6373506_panda-express-fried-rice-chinese-fried-rice-hd.png',
+        picture: rawGithub+'fried_rice.png',
         size:{
           small:3.75,
           large:7.00
@@ -2112,13 +2118,13 @@ export const data = {
 
   },
   dinners:{
-    logo:"https://www.a-akisushi.com/wp-content/uploads/2017/05/Hibachi-Combo.png",
+    logo: rawGithub+'dinner.png',
     list:{
       
     }
   },
   beverages:{
-    logo:"https://pngimage.net/wp-content/uploads/2018/05/beverages-png-4.png",
+    logo: rawGithub+'beverages.png',
     list:{
       y087676ty6n3f:{
         name:"coca cola",
@@ -2152,24 +2158,29 @@ export const data = {
       },
     },
    extras:false
-  },
-  lunchs2:{
-    logo:"https://www.pngfind.com/pngs/m/331-3311656_plate-lunch-hd-png-download.png",
+  },appetizer2:{
+    logo: rawGithub+'appetizer2.png',    
     list:{
-     
+      v2_y0872ty6n3f:{
+        name:"toast",
+        price:0.55,
+        picture:rawGithub+'toast_bread.png'
+        ,
+        size:{
+          small:0.55,
+          large:0.90
+        }
+      },
+      v2_y0f72tjln3f:{
+        name:"brownie",
+        price:3.05,
+        picture:rawGithub+'brownies.png',
+        size:{
+          small:3.05,
+          large:5.85
+        }
+      },
     }
   },
-  dinners2:{
-    logo:"https://www.a-akisushi.com/wp-content/uploads/2017/05/Hibachi-Combo.png",
-    list:{
-      
-    }
-  },
-  beverages2:{
-    logo:"https://pngimage.net/wp-content/uploads/2018/05/beverages-png-4.png",
-    list:{
-      
-    }
-  }
 }
 

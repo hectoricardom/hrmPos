@@ -84,22 +84,34 @@ class IngredientOption extends Component {
   } 
 
   
-  Open_EditDialog(){        
-    const {item,id} = this.props;
+  Open_EditDialog(){ 
+    var _th = this;        
+    const {item, id, isMobile} = this.props;
     var formName = `dialog_edit_ingredient_${id}`;   
     var _id = Util.Base64.encode(`_${formName}_`); 
     var _cont = <IngredientDialogRx close={this.close_EditDialog.bind(this,_id)} updOrder={this.HandleSave.bind(this,_id)} item={item} id={id}/>
     var options = {id:_id,zIndex:750,height:'440px',width:'500px',content:_cont};
-    this.props.dialogActions.OpenDialog(options); 
+    if(isMobile){
+      _th.props.dialogActions.OpenView(options); 
+    }else{
+      _th.props.dialogActions.OpenDialog(options); 
+    }     
     this.setState({editView:false});   
   }
-     
+       
+
   close_EditDialog(id){ 
-    var _th = this;
+    var _th = this;        
+    const { isMobile } = _th.props; 
     var options = {id:id};
-    _th.props.dialogActions.CloseDialog(options);     
+    if(isMobile){
+      _th.props.dialogActions.CloseView(options); 
+    }else{
+      _th.props.dialogActions.CloseDialog(options); 
+    } 
     this.setState({editView:false});
   }
+
 
 
   HandleSave(id,i,q,p) {    
