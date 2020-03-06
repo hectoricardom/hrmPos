@@ -19,6 +19,7 @@ import Icons from '../Icons/Icons';
 import MenuItemsRestaurantRx from '../MenuItemsRestaurant';
 
 import SlideCards from '../SlideCards';
+import Cart from '../cart';
 
 import Menu222 from '../Menu222';
 
@@ -116,16 +117,21 @@ class Restaurant extends Component {
 
 
   render() {
+    const {isMobile} = this.props;
       return (
         <div className=" restaurant_wrapper_comp_">
           {false?
             <TabsHRM data={_tabs} UpdateIndex={this.UpdateIndex.bind(this)} pth={_Type} initValue={this.state.index}/>
           :null}
+          {isMobile?<MobileOnlineRestarantRX _indX={this.state.index+1}/>:<OnlineRestarantRX _indX={this.state.index+1}/>}
+          
+          {false?
           <SlideCards  ref={this.ref}>
-            <OnlineRestarantRX _indX={this.state.index+1}/>
+            {isMobile?<MobileOnlineRestarantRX _indX={this.state.index+1}/>:<OnlineRestarantRX _indX={this.state.index+1}/>}
             <div _indX={this.state.index+1}/>                         
             <div  _indX={this.state.index+1}/>  
-          </SlideCards>              
+          </SlideCards>  
+          :null}            
         </div>
       ) 
   }
@@ -135,111 +141,6 @@ export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Restaura
 
 
 
-
-
-
-var data = {
-  appetizer:{
-    logo:"https://p.kindpng.com/picc/s/425-4253452_download-enjoy-your-favorites-with-the-appetizer-sampler.png",    
-    list:{
-      y0872ty6n3f:{
-        name:"bread",
-        price:0.55,
-        picture:'https://www.budgetbytes.com/wp-content/uploads/2010/03/Homemade-Garlic-Bread-front-500x500.jpg'
-      },
-      y0f72tjln3f:{
-        name:"brownie",
-        price:3.05,
-        picture:'https://www.clipartkey.com/mpngs/m/43-432775_thanksgiving-clipart-charlie-brown-transparent-background-brownie-png.png'
-      },
-    }
-  },
-  lunchs:{
-    logo:"https://www.pngfind.com/pngs/m/331-3311656_plate-lunch-hd-png-download.png",
-    list:{
-      y0872ty6n3f:{
-        name:"fried rice",
-        price:3.75,
-        picture:'https://www.pngfind.com/pngs/m/637-6373506_panda-express-fried-rice-chinese-fried-rice-hd.png',
-        size:{
-          small:3.75,
-          large:7.00
-        }
-      },
-      y0f72tjln3f:{
-        name:"pork steak",
-        price:5.00,
-        picture:'https://images.summitmedia-digital.com/yummyph/images/2017/10/04/pork-steak-gratin.jpg',
-        size:{
-          small:5.00,
-          large:7.50
-        }
-      },
-    },
-   extras:true
-
-  },
-  dinners:{
-    logo:"https://www.a-akisushi.com/wp-content/uploads/2017/05/Hibachi-Combo.png",
-    list:{
-      
-    }
-  },
-  beverages:{
-    logo:"https://pngimage.net/wp-content/uploads/2018/05/beverages-png-4.png",
-    list:{
-      y087676ty6n3f:{
-        name:"coke",
-        price:1.05,
-        picture:'https://icon2.cleanpng.com/20180317/hhw/kisspng-coca-cola-fizzy-drinks-fanta-sprite-coca-cola-png-transparent-images-5aadb5822422a1.230768881521333634148.jpg',
-        directOrder:true
-      },
-      y0f72tjln3f:{
-        name:"sprite",
-        price:1.05,
-        picture:'https://www.pinclipart.com/picdir/middle/56-567275_transparent-sprite-clip-art-royalty-free-download-sprite.png',
-        directOrder:true
-      },
-      y0f7dssgjln3f:{
-        name:"pepsi",
-        price:1.05,
-        picture:'https://www.pinclipart.com/picdir/middle/361-3613612_pepsi-can-png-pepsi-and-coca-cola-logo.png',
-        directOrder:true
-      },
-      y0f52tjln3f:{
-        name:"mountain dew",
-        price:1.05,
-        picture:'https://banner2.cleanpng.com/20180511/dhw/kisspng-fizzy-drinks-mountain-dew-beer-coca-cola-sangrita-5af5cf4be01a71.4484766915260588279179.jpg',
-        directOrder:true
-      },
-      y0f7f342tjln3f:{
-        name:"sierra mist",
-        price:1.05,
-        picture:'https://www.pngkit.com/png/detail/30-308769_sierra-mist-caffeinated-drink.png',
-        directOrder:true
-      },
-    },
-   extras:false
-  },
-  lunchs2:{
-    logo:"https://www.pngfind.com/pngs/m/331-3311656_plate-lunch-hd-png-download.png",
-    list:{
-     
-    }
-  },
-  dinners2:{
-    logo:"https://www.a-akisushi.com/wp-content/uploads/2017/05/Hibachi-Combo.png",
-    list:{
-      
-    }
-  },
-  beverages2:{
-    logo:"https://pngimage.net/wp-content/uploads/2018/05/beverages-png-4.png",
-    list:{
-      
-    }
-  }
-}
 
 
 
@@ -260,6 +161,7 @@ class OnlineRestarant extends Component {
   }
 
   componentDidMount() {  
+    let data =  commonActions.data;
     var options = Object.keys(data);
     this.setState({groupActive:options[0]})
   } 
@@ -304,96 +206,36 @@ class OnlineRestarant extends Component {
 
 
   render() { 
-    var options = Object.keys(data);
-      var _list = data && data[this.state.groupActive] && data[this.state.groupActive]['list']?data[this.state.groupActive]['list']:{};
-      const {location, forms} = this.props;
+   
+     const {location, forms} = this.props;
+      let data =  commonActions.data;
       var s = Util.parseQuery(location.search); 
       var isInCart = s.tb==="cart"?true:false;      
       var _item2cart = forms[cartFormName];   
-      console.log(_item2cart)   
+      var options = Object.keys(data);
+      var _list = data && data[this.state.groupActive] && data[this.state.groupActive]['list']?data[this.state.groupActive]['list']:{};
+      
       return (
           <div className={`_filters_metricas_operations`}>     
             <SideMenuRestarant updFiltersTab={this.updFiltersTab.bind(this)}  editingSection={this.state.groupActive}   />
             <div className="flexSpace"/>
             {isInCart && 
-                <div  className={`graph_Container  ${isInCart?'isVisible':''}`} style={{width:isInCart?'99%':0}} >
-                  <div className={'header_title_group'}>
-                      <h3>{'CART'}</h3>                      
-                    </div>
-                   {
-                    _item2cart && Object.keys(_item2cart).map(orderNo=>{
-                      return(<div>
-                          {Object.keys(_item2cart[orderNo]).map(plateId=>{ 
-                            let orderDetail = _item2cart[orderNo][plateId];                        
-                            let currentSize = orderDetail && orderDetail['size'];                        
-                            let currentSizeKey = currentSize && Object.keys(currentSize)[0]; 
-                            let currentExtras = orderDetail && orderDetail['extras'];         
-                            let item =  data && data[this.state.groupActive]&& data[this.state.groupActive]['list'] &&  data && data[this.state.groupActive]['list'][plateId];
-                            if(item){                              
-                              let ImgUrlPlt = commonActions.getBlobImage(item.picture) || item.picture;
-                              
-                              return(
-                                <div>
-                                  <div className={'_cart_item_top_'}>
-                                    <img src={ImgUrlPlt} alt={''} />
-                                    <div >
-                                      <div  className={'_cart_item_name_'}>
-                                        {item['name']}
-                                      </div>
-                                    
-                                      <div  className={'_cart_item_size_'}>
-                                        {currentSizeKey}
-                                      </div>
-                                      <div  className={'_cart_item_price_'}>
-                                        {currentSize[currentSizeKey]}
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div  className={'_cart_item_sub_'}>
-                                    {
-                                      Object.keys(currentExtras).map(_extra_=>{
-                                        let _qty = currentExtras[_extra_]['qty'];
-                                        console.log(_qty);
-                                        if(_qty!==0){
-                                          let _grp = currentExtras[_extra_]['group'];
-                                          let extraGrpDetail= commonActions.extrasOptions[_grp][_extra_];
-                                          let ImgUrl = commonActions.getBlobImage(extraGrpDetail.picture);
-                                          return(
-                                            <div className={`_cart_item_sub_extras ${_qty>0?'add':'rmv'}`}>                                          
-                                              <img src={ImgUrl} alt={''} />
-                                              <div className={'_qty'}>
-                                              {_qty>0?_qty:'X'}
-                                              </div>
-                                              <div className={'_name'}>
-                                              {_extra_}
-                                              </div>                                          
-                                            </div>
-                                          )
-                                        }else{
-                                          return null;
-                                        }
-                                      })
-                                    }                                  
-                                  </div>
-                                </div>
-                              )
-                            }else{
-                              return null
-                            }
-                          })}
-                      </div>)                     
-                      
-                    })
-                   }
-                  
-                </div>
+                <Cart itemOnCart={_item2cart} groupActive={this.state.groupActive} />
             }             
             {!isInCart && options.map(title=>{   
               var _extras = data && data[this.state.groupActive] && data[this.state.groupActive]['extras']?data[this.state.groupActive]['extras']:null;           
               return(
                 <div  className={`graph_Container  ${this.state.groupActive===title?'isVisible':''}`} style={{width:this.state.groupActive===title?'99%':0}}>
                    <div className={'header_title_group'}>
-                      <h3>{this.state.groupActive}</h3>                      
+                      <h3>{this.state.groupActive}</h3> 
+                      <div className={'__save__btn'} >
+                        <NavLink to={{pathname: '/restaurant', search:`?tb=cart`}}>
+                          <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#777'}}>
+                            <div className="hoverDiv orangeFlex "/>
+                            <span className="text2D orangeFlex">{'Cart'}</span>              
+                          </div> 
+                        </NavLink>
+                      </div>                       
                     </div>
                 {this.state.groupActive===title?
                   <MenuItemsRestaurantRx groupActive={this.state.groupActive} list={_list} extras={_extras}/>
@@ -409,6 +251,174 @@ class OnlineRestarant extends Component {
 
 
 const OnlineRestarantRX = withRouter(connect(mapStateToProps, mapDispatchToProps)(OnlineRestarant));
+
+
+
+
+
+
+
+
+
+
+
+
+class MobileOnlineRestarant extends Component {
+  constructor(props) {
+    super(props);  
+    this.state = {
+      visible :false,
+      top:0,
+      left:0,
+      display:false,      
+      groupActive:null,
+      index:0,
+      _Id: Util.generateUUID(),
+      orientation:false
+    };
+  }
+
+  componentDidMount() {  
+    let data =  commonActions.data;
+    var options = Object.keys(data);
+    // this.setState({groupActive:options[0]})
+  } 
+  
+  
+  componentWillMount(){    
+       
+  }
+  
+  componentWillUnmount(){    
+
+  }
+  
+  
+  UpdateIndex(i){
+    this.setState({index:i});
+    this.SldCard.updSlide(i)
+  }
+
+
+  updFiltersTab(l){  
+    this.setState({groupActive:l});
+    // var backDetails = `[back-item-detail]`;
+    // var elmbackDetails = document.querySelector(backDetails);
+    // elmbackDetails.setAttribute("back-item-detail", false);
+  }
+
+
+  HandleSettingTabIndex(){    
+
+  }
+
+  goBack(){    
+    this.setState({slideMenuCollapsed:!this.state.slideMenuCollapsed});
+  }
+
+
+  ref = r => {
+    this.SldCard = r
+  }
+  
+
+
+  render() { 
+   
+     const {location, forms, isMobile} = this.props;
+      let data =  commonActions.data;
+      var s = Util.parseQuery(location.search); 
+      var isInCart = s.tb==="cart"?true:false; 
+
+      var isInMenu = s.tb==="menu"?true:false; 
+           
+      var _item2cart = forms[cartFormName];   
+      var options = Object.keys(data);
+      var _list = data && data[this.state.groupActive] && data[this.state.groupActive]['list']?data[this.state.groupActive]['list']:{};
+      
+      return (
+          <div isMobile={`${isMobile}`} className={``}>
+            {false?
+            <div className={'header_title_group'}>
+              <h3>{isInCart?'CART':this.state.groupActive?this.state.groupActive:"MENU"}</h3> 
+              <div className={'__save__btn'} >
+                <NavLink to={{pathname: '/restaurant', search:`?tb=${isInCart?'':'cart'}`}}>
+                  <div className="center--Container grayStyle" style={{"--color-tab--base--hover":'#777'}}>
+                    <div className="hoverDiv orangeFlex "/>
+                    <span className="text2D orangeFlex">{isInCart?'CHECKOUT':''}</span>              
+                  </div> 
+                </NavLink>
+              </div>                       
+            </div>
+            :null}
+            <div className={`_bottomBar_Float`}>
+              <div className={`_wrp_btBar`} >
+                
+                  <NavLink to={{pathname: '/restaurant', search:`?tb=menu`}}  onClick={this.updFiltersTab.bind(this,null)}>
+                    <div className={`_tab_Bar_  ${isInMenu?'_activeTab':''}`} >
+                      <div className={`_tab_Bar_Icon_`} >
+                        <Icons name={'outline_restaurant'} color={'#555'} size={30}/> 
+                      </div>
+                      <p>Menu</p>
+                    </div>
+                  </NavLink>
+                  <NavLink to={{pathname: '/restaurant', search:`?tb=cart`}}>
+                    <div className={`_tab_Bar_  ${isInCart?'_activeTab':''}`} >
+                      <div className={`_tab_Bar_Icon_`} >
+                        <Icons name={'outline_cart'} color={'#555'} size={30}/> 
+                      </div>
+                      <p>Cart</p>
+                    </div>
+                  </NavLink>
+                  <NavLink to={{pathname: '/restaurant', search:`?tb=account`}}>
+                    <div className={`_tab_Bar_`} >
+                      <div className={`_tab_Bar_Icon_`} >
+                        <Icons name={'account'} color={'#555'} size={30}/> 
+                      </div>
+                      <p>Account</p>
+                    </div>
+                  </NavLink>
+              </div>
+            </div> 
+            <div className="flexSpace"/>
+            {isInCart && 
+                <Cart itemOnCart={_item2cart} groupActive={this.state.groupActive} />
+            }            
+            {!isInCart && isInMenu && <div className={`${this.state.groupActive?'':`_flexDisplay_ _flexWrapDisplay_ `}_body_menu_`}> 
+             {options.map(title=>{
+              var _extras = data && data[this.state.groupActive] && data[this.state.groupActive]['extras']?data[this.state.groupActive]['extras']:null;           
+              let ImgUrl = data && data[title] && data[title]['logo']; 
+              return(
+                <div  className={`_cart_item_sub_ `} style={{"--dimention_sub_ingredients--": '125px'}}>
+                  {!this.state.groupActive?<div>
+                    <div className={`_cart_item_sub_extras `}  onClick={this.updFiltersTab.bind(this,title)}>                                          
+                      <img src={ImgUrl} alt={''} />
+                      <div className={'_name'}>
+                          {title}
+                      </div>                                          
+                    </div>
+                  </div>:null}
+                  <div  className={`graph_Container  ${this.state.groupActive===title?'isVisible':''}`} style={{width:this.state.groupActive===title?'99%':0}}>
+                  {true && this.state.groupActive===title?
+                    <MenuItemsRestaurantRx groupActive={this.state.groupActive} list={_list} extras={_extras}/>
+                  :null}
+                </div>
+              </div>
+              )
+            })}
+            </div>}            
+          </div>
+    )
+  }
+}
+
+
+
+const MobileOnlineRestarantRX = withRouter(connect(mapStateToProps, mapDispatchToProps)(MobileOnlineRestarant));
+
+
+
+
 
 
 
@@ -479,18 +489,18 @@ class SideMenuRestarant extends Component {
 
     const {slideMenuCollapsed, groupActive, _Id } = this.state;
     
+    let data =  commonActions.data;
 
     var options = Object.keys(data);
-
       return (
         <div className="restaurant_wrapper">
           <div className="container_left_menu var_left" ytcp-navigation-drawer={`${true}`} matterhorn={`${true}`} collapsed-nav={`${slideMenuCollapsed}`} content-section={`${_Id?'editing':'dashboard'}`} >                    
             <nav className="ytcp-navigation-drawer">
                     <div className="nav_goBack">
                     {_Id?
-                      <NavLink  to={{pathname: '/restaurant', search:`?vId=${_Id}&tb=online`}} className={`-navigation_drawer_button_ ${slideMenuCollapsed?'rotateArrow':''}`} onClick={this.goBack.bind(this)}> 
+                      <a className={`-navigation_drawer_button_ ${slideMenuCollapsed?'rotateArrow':''}`} onClick={this.goBack.bind(this)}> 
                         <Icons name={'arrowBack'} color={'#1967d2'} size={24}/>                                
-                      </NavLink>
+                      </a>
                     :null
                     }
                     </div>

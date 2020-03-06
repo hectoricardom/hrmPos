@@ -1,0 +1,415 @@
+
+
+
+
+._separator_{
+  height: 1px;
+  width: 96%;
+  margin: 0 auto;
+  background-color: #dcdcdc;
+}
+
+
+.graph_Container.isVisible.isInCart {
+  opacity: 1;
+  margin: 0;
+  min-height: calc(100vh - 120px);
+  background: #fafafa;
+}
+
+
+  ._cart_item_{
+    margin: 25px 10px 10px;
+    box-shadow: 0 3px 5px 0 rgba(60,64,67,.302), 0 1px 6px 1px rgba(60,64,67,0);
+  }
+
+  ._cart_item_top_{
+        display: flex;
+  }
+
+  ._cart_item_top_left_{
+    display: flex;
+  }
+
+  ._cart_item_top_right_{
+    display: block;
+    padding: 7px 12px 0 0;
+  }
+    ._cart_item_top_ img{
+      width: 100px;
+      height: 100px;
+      border-radius: 25%;
+      padding: 25px 25px;
+    }
+
+
+    ._cart_item_top_ ._cart_item_name_{
+      font: 400 20px/25px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      margin: 10px 13px 15px;
+      color: #5c5c5c;
+      text-transform: capitalize;
+    }
+
+    ._cart_item_top_ ._cart_item_size_{
+      font: 600 24px/27px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      margin: 10px 13px 15px;
+    }
+
+    ._cart_item_top_ ._cart_item_price_{
+      font: 600 24px/27px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      margin: 10px 13px 15px;
+      color: #5c5c5c;
+    }
+
+
+
+
+
+    ._cart_item_sub_{
+      display: flex;
+      --dimention_sub_ingredients--:45px;
+      flex-wrap: wrap;
+      max-width: 90%;
+      margin: 0 auto;
+      min-height: 1px;
+    }
+
+    ._cart_item_sub_ ._cart_item_sub_extras{
+      position: relative;
+      margin: 12px 15px;
+      border-radius: 50% ;
+      width: var(--dimention_sub_ingredients--);
+      height: var(--dimention_sub_ingredients--);
+      padding: 4px;
+    }
+
+    ._cart_item_sub_ ._cart_item_sub_extras.add{
+      border: 3px solid #00796b;
+      padding: 2px;
+    }
+    ._cart_item_sub_ ._cart_item_sub_extras.rmv{
+      border: 3px solid #b71c1c;
+      padding: 2px;
+    }
+
+    ._cart_item_sub_ ._cart_item_sub_extras img{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: var(--dimention_sub_ingredients--);
+      height: var(--dimention_sub_ingredients--);
+      border-radius: 50%;
+    }
+
+
+    ._cart_item_sub_ ._cart_item_sub_extras ._name{
+      position: absolute;
+      bottom: -20px;
+      left: 0px; 
+      font: 600 14px/17px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;    
+      text-align: center;
+      width: 85px;   
+    }
+    
+
+    ._cart_item_sub_ ._cart_item_sub_extras ._qty{
+      position: absolute;
+      bottom: 0px;
+      right: -15px;       
+      border-radius: 50%;
+      z-index: 65;
+      width: 16px;
+      height: 16px;
+      padding: 8px;
+      font: 600 16px/19px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      
+    }
+
+
+
+    ._cart_item_sub_ ._cart_item_sub_extras.add ._qty{
+      background-color: #00796b;
+      color: #fff;
+    }
+    ._cart_item_sub_ ._cart_item_sub_extras.rmv ._qty{
+      color: #fff;
+      background-color: #b71c1c;
+    }
+
+
+
+    ._cart_item_edit_qty_{
+      display: flex;
+    }
+
+    ._cart_item_edit_qty_ ._cart_item_qty_{
+      font: 600 24px/27px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      padding: 4px 3px 0px;
+      color: #5c5c5c;
+    }
+
+    
+
+
+    .center--Container svg{
+      fill: var(--color-base--hover);
+    }
+
+
+    .center--Container.numberBtn{
+      min-width: 32px;
+      padding: 0 13px;
+    }
+
+
+    .isInCart .header_title_group{
+      width: 100%;
+      padding: 25px 15px;
+      background: var(--calendar--back--color--);
+      color: var(--color-base--hover);
+      display: flex; 
+      width: calc(100% - 30px);
+    }
+  
+    .isInCart .header_title_group h3{
+      width: 100px;
+      margin: 15px auto;
+      font: 600 28px/30px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      text-transform: uppercase;
+    }
+
+
+
+
+
+
+
+
+    /******************************************************************************************************************************************************************************************************************************
+    *******************************************************************************************************************************************************************************************************************************
+    *******************************************************************************************************************************************************************************************************************************
+    *******************************************************************************************************************************************************************************************************************************
+    *******************************************************************************************************************************************************************************************************************************
+    *******************************************************************************************************************************************************************************************************************************
+    *******************************************************************************************************************************************************************************************************************************
+    ******************************************************************************************************************************************************************************************************************************/
+    
+
+
+
+
+
+    ._dialog_add_tip{
+        background:#fff;
+        height: 550px;
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_header{
+      padding: 15px 0;
+      text-align: center; 
+      background: var(--calendar--back--color--);
+      color: var(--color-base--hover);
+      font: 600 22px/27px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      text-transform: uppercase;
+
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_totals{
+      padding: 15px 25px; 
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_totals ._dialog_add_tip_totals_wrp{
+      display: flex;
+      max-width: 80%;
+      margin: 15px auto;
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_totals ._dialog_add_tip_totals_wrp ._total_items{
+      text-align: center
+    }
+
+
+    ._dialog_add_tip ._dialog_add_tip_totals ._dialog_add_tip_totals_wrp ._total_items p{
+      font: 500 14px/19px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      text-transform: capitalize;
+      color: #5c5c5c;
+      margin: 7px 0;
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_totals ._dialog_add_tip_totals_wrp ._total_items span{
+      font: 500 20px/23px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      text-transform: uppercase;
+      color: #5c5c5c;
+
+    }
+
+
+    ._dialog_add_tip ._dialog_add_tip_amount{
+      font: 600 36px/41px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      text-transform: uppercase;
+      color: #5c5c5c;
+      text-align: center;
+    }
+    
+
+    ._dialog_add_tip ._dialog_add_tip_btns{
+      margin: 25px 7px 55px;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;   
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_btns
+    ._tip_box_{
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 3px 5px 0 rgba(60,64,67,.302), 0 1px 6px 1px rgba(60,64,67,0);
+      margin: 0 15px;
+      background: var(--calendar--back--color--);
+      cursor: pointer;
+    }
+
+    ._dialog_add_tip ._dialog_add_tip_btns
+    ._tip_box_ p{
+      font: 600 16px/19px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      text-transform: uppercase;
+      color: var(--color-base--hover);
+      margin: 5px;
+    } 
+
+    ._dialog_add_tip ._actions_{
+        display: flex;
+        margin: 25px 15px 35px;
+    }
+
+
+
+
+
+    ._order_{
+      display: block;
+      margin: 5px 25px;
+    }
+
+    ._order_
+    ._order_detail_{
+      padding: 3px 15px 3px 20px;
+      /*
+      box-shadow: 0 3px 5px 0 rgba(60,64,67,.302), 0 1px 6px 1px rgba(60,64,67,0);
+      */
+      
+    }
+
+    ._order_
+    ._order_detail_
+    ._order_detail_item{
+      display: flex;
+    }
+
+    ._order_
+    ._order_detail_
+    ._order_detail_item span{
+      display: flex;
+      text-transform: capitalize;
+    }
+
+    ._order_
+    ._order_detail_
+    ._order_detail_item span{
+      display: flex;
+      text-transform: capitalize;
+    }
+
+    
+    ._order_
+    ._order_detail_ 
+    ._extras_{
+      padding: 5px 1px 5px 15px;
+      
+    }
+
+
+
+    ._order_
+    ._order_detail_ 
+    ._extras_ ._extras_Items_ {
+      display: flex;
+      padding: 2px ;
+    }
+
+    ._order_
+    ._order_detail_ 
+    ._extras_ ._extras_Items_ p{
+      text-transform: capitalize;
+      margin: 0; 
+    }
+
+
+    ._checkout_totals_wrp{
+      margin: 15px 5px 5px;
+    }
+    
+
+    ._order_
+    ._order_detail_ 
+    ._extras_ ._extras_Items_ 
+    ._price,
+    ._order_
+    ._order_detail_
+    ._order_detail_item
+    ._price
+    {
+      font: 500 16px/21px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      color: #5c5c5c; 
+      letter-spacing: 1px;
+      text-align: right;
+      width: 85px; 
+    }
+    
+   
+
+    ._checkout_totals{
+      display: flex;
+      margin: 5px 15px 5px 5px
+    }
+    
+    ._checkout_totals ._checkout_totals_item{
+      display: flex;
+    }
+   
+
+    
+    ._checkout_totals p {
+      font: 500 16px/21px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      color: #5c5c5c; 
+      letter-spacing: 1px;
+      text-align: right;
+      min-width: 60px;
+      margin: 0;
+      
+    }
+
+    ._checkout_totals span {
+      font: 400 13px/18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      color: #5c5c5c; 
+      letter-spacing: 0.6px;
+      text-align: right;
+      text-transform: uppercase;
+      padding: 3px 0 0;
+    }
+
+
+    ._dialog_add_tip._checkList_ ._body_{
+      overflow: hidden;
+      overflow-y: auto;
+      max-height: 425px;
+    
+    }
+
+    ._dialog_add_tip._checkList_ ._actions_{
+      display: flex;
+      margin: 15px 15px;
+   }

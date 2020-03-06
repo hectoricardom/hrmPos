@@ -202,7 +202,7 @@ class Home extends Component {
     if(appLoaded) {     
       return (
         <div>
-          <div back-item-detail={'false'} className={`back_item_detail`}></div>
+          {false?<div back-item-detail={'false'} className={`back_item_detail`}></div> :null}
         
           <div className={'_app_body_content_'}>          
           <Switch>    

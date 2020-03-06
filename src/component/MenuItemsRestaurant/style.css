@@ -51,8 +51,18 @@
     font: 600 15px/26px "Google Sans", Roboto, Arial, sans-serif;
     letter-spacing: 1.1px;
 }
+
+
 .center--Container .text2D.orangeFlex {
     color: var(--color-base--hover);    
+}
+
+.center--Container .text2D{
+  text-decoration: none;   
+}
+
+.__save__btn a{
+  text-decoration: none;
 }
 
 
@@ -60,10 +70,27 @@
     color: #727270;    
 }
 
+.center--Container .hoverDiv.fireRed {
+  background-color: #ea4335;
+}
 
-
+.center--Container .text2D.fireRed {
+  color: #ea4335;
+}
 
 
 ._dialog_ingredient_edit._duplicateOrder{
   min-height: 275px;
+}
+
+[isMobile="true"] .menu_items_Container.ViewDetails {
+  height: calc(100vh - 200px);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+[isMobile] .header_title_group{
+
+  padding: 10px 15px;
+
 }
