@@ -14,6 +14,7 @@ import IngredientOptionRx from '../IngredientOption';
 import * as Util from '../../state/Util';
 import { NavLink , withRouter} from 'react-router-dom';
 
+import Icons from '../Icons/Icons';
 
 
 
@@ -274,12 +275,19 @@ class ItemDetailDesktopRestarant extends Component {
   
 
 
+
+
+
+
   render() {
     const { item, id, dimension, extras, groupActive, orderId, isMobile } = this.props;
     let currentOrder = this.state.item2cart && this.state.item2cart[orderId] && this.state.item2cart[orderId][id]  && this.state.item2cart[orderId][id];
     let currentSize = currentOrder  && currentOrder['size'];
     let currentSizeKey = currentSize && Object.keys(currentSize)[0];
-    
+    console.log('isRunningStandalone',Util.isRunningStandalone())
+    if (Util.isRunningStandalone()) {
+      console.log(' This code will be executed if app is running standalone ')
+    }
    
       return(
         <div  is-mobile={isMobile?'true':'false'} className={`_items_details_`} item-plate={`${id}`} style={{}}>
@@ -301,14 +309,25 @@ class ItemDetailDesktopRestarant extends Component {
                           `}
                           </style>
                           <div className={`details `} onClick={this.showItem.bind(this,id)}>                            
+                            {isMobile?
+                              <div className="backBtn"  onClick={this.closeView.bind(this,id)}>
+                                <Icons name={'arrowBack'} color={'#5d5d5d'} size={24}/>             
+                              </div>
+                             :null
+                            }
+                            {isMobile?null:
+                             <div className="flexSpace"/>
+                            }
                             <img src={item.picture} alt={'logo'} height={160} width={160} img-item-plate={`${id}`}/>      
                             <div className={`spec`}>                    
                               <div className="title_text" title-item-plate={`${id}`}>
                                 {item.name}
                               </div>
+                              {isMobile?null:
                               <div className="price" price-item-plate={`${id}`}>
                                 ${currentSize?currentSize[currentSizeKey].toFixed(2):item.price.toFixed(2)}
                               </div>
+                            }
                             </div> 
                             {isMobile?null:
                             <div className="flexSpace"/>
@@ -323,7 +342,7 @@ class ItemDetailDesktopRestarant extends Component {
                           {
                             item.size && 
                             <div className={`_title_label_`}>
-                                <h5>{'Sizes'}</h5>
+                                <h5>{'Sizes'}:</h5>
                             </div>
                             }
                             <div className={`_items_details_extras_size`} >
@@ -353,7 +372,7 @@ class ItemDetailDesktopRestarant extends Component {
                                 return(
                                   <div>
                                     <div className={`_title_label_`}>
-                                      <h5>{_extGrp}</h5>
+                                      <h5>{_extGrp}:</h5>
                                     </div>
                                     <div className={`_items_details_extras_size`} >                              
                                     {
@@ -374,10 +393,19 @@ class ItemDetailDesktopRestarant extends Component {
 
 
                           </div>
-                          <div className={`_items_details_footer`} >
-                            <div className={`_total_`}>
-                                Total: ${this.calcTotal().toFixed(2)}
+                          {isMobile?
+                          <div className={`_add_2_cart_`}>
+                            <div className="flexSpace"/>
+                            <div className={`_label_`}>
+                                {'Add to Cart'}
                             </div>
+                            <div className="flexSpace"/>
+                            <div className={`_total_`}>
+                                ${this.calcTotal().toFixed(2)}
+                            </div>  
+                          </div>
+                          :
+                          <div className={`_items_details_footer`} >
                             <div className="flexSpace"/>
                             <div  className={`_actions_`}>                           
                                 <div className={`btn_action _cancel_`}  onClick={this.closeView.bind(this,id)}>
@@ -389,7 +417,7 @@ class ItemDetailDesktopRestarant extends Component {
                                     {this.state.isInCart?`Update Cart`:`Add to Cart`}
                                 </NavLink>:null}
                             </div>
-                          </div>
+                          </div>}
              </div>
                     
       )

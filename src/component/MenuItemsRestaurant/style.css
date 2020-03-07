@@ -83,14 +83,36 @@
   min-height: 275px;
 }
 
-[isMobile="true"] .menu_items_Container.ViewDetails {
+[is-mobile="true"] .menu_items_Container.ViewDetails {
   height: calc(100vh - 200px);
   overflow: hidden;
   overflow-y: auto;
 }
 
-[isMobile] .header_title_group{
-
+[is-mobile="true"] .header_title_group{
   padding: 10px 15px;
 
 }
+
+
+
+
+[is-mobile="true"]  .menu_items_Container .menu_items_.show .details img {
+  height: 100px;
+  width: 100px;
+}
+
+
+[is-mobile] .menu_items_.show .title_text{
+  margin: 5px 0 0;
+  justify-content:left;
+  text-align: left;
+  color: #3b3b3b;
+}
+
+[is-mobile] .menu_items_.show .price{
+  justify-content:left;
+  font: 500 14px/17px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+

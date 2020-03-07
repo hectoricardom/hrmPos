@@ -239,7 +239,7 @@ class MenuItemsRestarant extends Component {
 
 
   render() {
-    const { groupActive, list } = this.props;
+    const { groupActive, list, isMobile } = this.props;
 
 
     const {show, itmActive, dimension } = this.state;
@@ -248,7 +248,7 @@ class MenuItemsRestarant extends Component {
 
     var options = Object.keys(data);
       return (
-          <div className="menu_items_Container ViewDetails" >                    
+          <div  is-mobile={isMobile?'true':'false'} className="menu_items_Container ViewDetails" >                    
                     {
                       groupActive && list && Object.keys(list).map((itm2,ind2)=>{
                         let factor = .15;
@@ -316,7 +316,7 @@ class MenuItemsRestarant extends Component {
                               {item2Show.name}
                             </div>
                             <div className="price" price-item-plate={`${itm}`}>
-                              {item2Show.price}
+                              ${item2Show.price}
                             </div>
                           </div>
                         </div>

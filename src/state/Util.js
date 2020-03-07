@@ -15,7 +15,9 @@ const firebaseUrl = `https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.8.0
 
 
 
-
+export   function isRunningStandalone() {
+    return (window.matchMedia('(display-mode: standalone)').matches);
+}
 
 export function getFingerPrint() {
     return new Promise((resolve, reject) => {        
