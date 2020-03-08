@@ -261,16 +261,20 @@ class CartRestarant extends Component {
   HandleDelete(id,plateId){
     const { itemOnCart, isMobile } = this.props;
     let formName = `item_WDetails${id}`;   
-    let _id = Util.Base64.encode(`_${formName}_`); 
-    let _item =itemOnCart[id];
-    let dataMenu =  _item?_item[plateId]:{};
-    let _cont = <DialogDeleteItemOnCartRX close={this.close_DialogView.bind(this,_id)} dataMenu={dataMenu} id={id} item={_item} confirm={this.ConfirmDelete.bind(this,_id)}/>
-    let options = {id:_id,zIndex:700,height:'300px',width:'550px',content:_cont};
-    
-    if(isMobile){
-      this.props.dialogActions.OpenView(options);
-    }else{
-      this.props.dialogActions.OpenDialog(options);
+    let _id = Util.Base64.encode(`_${formName}_`);
+    if(isMobile && this.state.isEditing){
+      this.ConfirmDelete(_id,id);
+    }
+    else{
+      let _item =itemOnCart[id];
+      let dataMenu =  _item?_item[plateId]:{};
+      let _cont = <DialogDeleteItemOnCartRX close={this.close_DialogView.bind(this,_id)} dataMenu={dataMenu} id={id} item={_item} confirm={this.ConfirmDelete.bind(this,_id)}/>
+      let options = {id:_id,zIndex:700,height:'300px',width:'550px',content:_cont};      
+      if(isMobile){
+        this.props.dialogActions.OpenView(options);
+      }else{
+        this.props.dialogActions.OpenDialog(options);
+      }
     }
   }
   
@@ -313,14 +317,19 @@ class CartRestarant extends Component {
   }
 
 
+  openEdit(){
+    var _th = this;
+    _th.setState({isEditing:!this.state.isEditing}); 
+  }
 
   render() {
     const { itemOnCart, isMobile } = this.props;
     let isInCart = true;
+    const {isEditing} = this.state;
     var _item2cart = itemOnCart; 
     var totalCart = Util.calcTotalCart(itemOnCart);
       return (
-            <div is-mobile={isMobile?'true':'false'} is-in-cart={'true'} className={`graph_Container isInCart ${isInCart?'isVisible':''}`} style={{width:isInCart?'99%':0}} >
+            <div is-mobile={isMobile?'true':'false'}  is-editing={isEditing?'true':'false'} is-in-cart={'true'} className={`graph_Container isInCart ${isInCart?'isVisible':''}`} style={{width:isInCart?'99%':0}} >
                   {isMobile?null:<div className={'header_title_group'}>
                       <h3>{'CART'}</h3> 
                       <div className={'__save__btn'} >
@@ -330,8 +339,16 @@ class CartRestarant extends Component {
                           </div>
                       </div>                     
                     </div>}
+                    {isMobile && totalCart>0?       
+                    <div className={'edit_cart_section'}>
+                      <div className="flexSpace"/>
+                      <div className={'_edit_view_btn'} onClick={this.openEdit.bind(this)}>
+                        <Icons name={isEditing?'outline_renew':'outline_edit'} color={'#555'} size={24}/>
+                      </div>
+                    </div>
+                    :null}
 
-                    {isMobile?totalCart>0?
+                    {isMobile?totalCart>0?isEditing?null:
                     <div className={`btnFloatCheckOut`}  onClick={this.HandleCheckOut.bind(this)}>
                         <div  className={`_wrp_`}>
                           <h5> 
@@ -365,6 +382,7 @@ class CartRestarant extends Component {
                             let currentSizeKey = currentSize && Object.keys(currentSize)[0]; 
                             let currentExtras = orderDetail && orderDetail['extras'];         
                             //let item =  data && data[groupActive]&& data[groupActive]['list'] &&  data && data[groupActive]['list'][plateId];
+                                                   
                             let isLastItem = Object.keys(_item2cart).length-1 === indOrd?true:false;
                             if(orderDetail){                              
                               let ImgUrlPlt = commonActions.getBlobImage(currentPicture) || currentPicture;
@@ -374,10 +392,11 @@ class CartRestarant extends Component {
                                 <div className={`_cart_item_ ${isLastItem?'_last':''}`}>
                                   <div className={'_cart_item_top_'}>
                                     <div className={'_cart_item_top_left_'} onClick={this.HandleEdit.bind(this,orderNo,plateId)}>
+                                      {isEditing?null:<h5>{currentQty}</h5>}
                                       <img src={ImgUrlPlt} alt={''} />
                                       {isMobile?null:<div >
                                         <div  className={'_cart_item_name_'}>
-                                        {currentSizeKey?currentSizeKey!=='*'?currentSizeKey:null:null} {currentName}
+                                        {currentQty} {currentSizeKey?currentSizeKey!=='*'?currentSizeKey:null:null} {currentName}
                                         </div>
                                       </div>
                                       }
@@ -431,7 +450,7 @@ class CartRestarant extends Component {
                                     
                                   </div>
                                   </div>
-                                  {isMobile?
+                                  {isMobile && isEditing?
                                         <div className={isMobile?'_flexDisplay_':''}>
                                            <div  className={'_cart_item_size_'}>
                                           <div className={'__save__btn'} >
@@ -466,25 +485,38 @@ class CartRestarant extends Component {
                                     :null  }
 
                                  {currentExtras? <div className={`_separator_`}/>  :null}
-                                  <div  className={'_cart_item_sub_'} style={currentExtras?{minHeight:'100px'}:{}}>
+                                  <div  className={'_cart_item_sub_'} style={currentExtras?{minHeight:'50px'}:{}}>
                                     {
                                       currentExtras && Object.keys(currentExtras).map(_extra_=>{
-                                        let _qty = currentExtras[_extra_]['qty'];
-                                        if(_qty!==0){
-                                          let extrapicture= currentExtras[_extra_]['picture'];
+                                        let extrDetails = currentExtras[_extra_];
+                                        let _qty = extrDetails['qty'];
+                                        if(_qty!==0){                                          
+                                          let extrapicture= extrDetails['picture'];
                                           let ImgUrl = commonActions.getBlobImage(extrapicture);
-                                          return(
-                                            <div className={`_cart_item_sub_extras ${_qty>0?'add':'rmv'}`}>                                          
-                                              <img src={ImgUrl} alt={''} />
-                                              <div className={'_qty'}>
-                                              {_qty>0?_qty:'X'}
+                                          
+                                          if(isMobile){
+                                            return(
+                                              <div className={`_mobile_sub_extras`}>                                                
+                                                <div className={'_name'}>
+                                                  {_qty>0?'Extra ':_qty<0?'No ':''} {_extra_}  {extrDetails.qty>0?extrDetails.price>0?`  $${extrDetails.price*extrDetails.qty}`:'':''}  
+                                                </div>                                          
                                               </div>
-                                              <div className={'_name'}>
-                                              {_extra_}
-                                              </div>                                          
-                                            </div>
-                                          )
-                                        }else{
+                                            )
+                                          }else{
+                                            return(
+                                              <div className={`_cart_item_sub_extras ${_qty>0?'add':'rmv'}`}>                                          
+                                                <img src={ImgUrl} alt={''} />
+                                                <div className={'_qty'}>
+                                                {_qty>0?_qty:'X'}
+                                                </div>
+                                                <div className={'_name'}>
+                                                {_extra_}
+                                                </div>                                          
+                                              </div>
+                                            )
+                                          }
+                                        }
+                                        else{
                                           return null;
                                         }
                                       })

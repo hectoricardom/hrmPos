@@ -23,6 +23,8 @@ import Cart from '../cart';
 
 import Menu222 from '../Menu222';
 
+import RippleHRM from '../RippleHRM';
+
 var _tabs = ['online' ,'order fast','order pretty'];
 var _Type = 'restaurant'
 
@@ -313,7 +315,7 @@ class MobileOnlineRestarant extends Component {
   }
 
   goBack(){    
-    this.setState({slideMenuCollapsed:!this.state.slideMenuCollapsed});
+    this.setState({groupActive:null});
   }
 
 
@@ -353,16 +355,18 @@ class MobileOnlineRestarant extends Component {
             <div className={`_bottomBar_Float`}>
               <div className={`_wrp_btBar`} >
                 
-                  <NavLink to={{pathname: '/restaurant', search:`?tb=menu`}}  onClick={this.updFiltersTab.bind(this,null)}>
+                  <NavLink to={{pathname: '/restaurant', search:`?tb=menu`}}  onClick={this.updFiltersTab.bind(this,null)}>                    
                     <div className={`_tab_Bar_  ${isInMenu?'_activeTab':''}`} >
+                    <RippleHRM />                      
                       <div className={`_tab_Bar_Icon_`} >
                         <Icons name={'outline_restaurant'} color={'#555'} size={30}/> 
                       </div>
                       <p>Menu</p>
                     </div>
                   </NavLink>
-                  <NavLink to={{pathname: '/restaurant', search:`?tb=cart`}}>
+                  <NavLink to={{pathname: '/restaurant', search:`?tb=cart`}}>                    
                     <div className={`_tab_Bar_  ${isInCart?'_activeTab':''}`} >
+                    <RippleHRM />
                       <div className={`_tab_Bar_Icon_`} >
                         <Icons name={'outline_cart'} color={'#555'} size={30}/> 
                       </div>
@@ -371,6 +375,7 @@ class MobileOnlineRestarant extends Component {
                   </NavLink>
                   <NavLink to={{pathname: '/restaurant', search:`?tb=account`}}>
                     <div className={`_tab_Bar_ ${isInAccount?'_activeTab':''}`} >
+                    <RippleHRM />
                       <div className={`_tab_Bar_Icon_`} >
                         <Icons name={'account'} color={'#555'} size={30}/> 
                       </div>
@@ -389,7 +394,7 @@ class MobileOnlineRestarant extends Component {
               let ImgUrlLogo = data && data[title] && data[title]['logo']; 
               let ImgUrl = commonActions.getBlobImage(ImgUrlLogo) || ImgUrlLogo; 
               return(
-                <div  className={`_cart_item_sub_ `} style={{"--dimention_sub_ingredients--": '125px'}}>
+                <div  className={`_cart_item_sub_ `} is-submenu-active={this.state.groupActive===title?'true':'false'} style={{"--dimention_sub_ingredients--": '125px'}}>
                   {!this.state.groupActive?<div>
                     <div className={`_cart_item_sub_extras `}  onClick={this.updFiltersTab.bind(this,title)}>                                          
                       <img src={ImgUrl} alt={''} />
@@ -399,7 +404,17 @@ class MobileOnlineRestarant extends Component {
                     </div>
                   </div>:null}
                   <div  className={`graph_Container  ${this.state.groupActive===title?'isVisible':''}`} style={{width:this.state.groupActive===title?'99%':0}}>
-                  {true && this.state.groupActive===title?
+                  {this.state.groupActive && this.state.groupActive===title?
+                  <div className={"_headerbarMenu"}>
+                    <div className="backBtn"  onClick={this.goBack.bind(this)}>
+                      <Icons name={'arrowBack'} color={'#5d5d5d'} size={24}/>             
+                    </div>
+                    <div className="flexSpace"/>
+                    <h5>{this.state.groupActive}</h5>
+                    <div className="flexSpace"/>
+                  </div>
+                  :null}
+                  {this.state.groupActive && this.state.groupActive===title?
                     <MenuItemsRestaurantRx groupActive={this.state.groupActive} list={_list} extras={_extras}/>
                   :null}
                 </div>

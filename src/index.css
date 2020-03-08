@@ -17,7 +17,8 @@ code {
 }
 
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,600,700,900&display=swap');
 
 @-webkit-keyframes text-intro{0% {opacity: 0;transform: translateY(3vw);}100% {opacity: 1;transform: translateY(0);}}
 @keyframes text-intro{0% {opacity: 0;transform: translateY(3vw);}100% {opacity: 1;transform: translateY(0);}}

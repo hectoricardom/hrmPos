@@ -100,6 +100,7 @@
 [is-mobile="true"]  .menu_items_Container .menu_items_.show .details img {
   height: 100px;
   width: 100px;
+  margin: 0 20px;
 }
 
 
@@ -107,7 +108,10 @@
   margin: 5px 0 0;
   justify-content:left;
   text-align: left;
-  color: #3b3b3b;
+  color: #4b4b4b;
+  font: 500 18px/23px Roboto;
+  letter-spacing: 0.48px;
+
 }
 
 [is-mobile] .menu_items_.show .price{

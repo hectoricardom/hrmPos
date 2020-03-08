@@ -921,3 +921,27 @@
       color : #5c5c5c; 
       text-transform: capitalize;
     }
+
+    [is-mobile] ._headerbarMenu{
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      border-bottom: 1px solid #cdcdcd;
+      padding: 0 0 11px;
+    }
+
+    [is-mobile] ._headerbarMenu h5{
+      margin: 1px 0 0;
+      font: 600 20px/25px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      color : #5c5c5c; 
+      text-transform: uppercase;     
+    }
+
+  [is-mobile="true"] [is-submenu-active="false"]._cart_item_sub_ {
+      padding: 1px;
+  }
+
+  [is-mobile="true"] [is-submenu-active="true"]._cart_item_sub_ {
+    padding: 11px 3px 7px;
+  }
+    

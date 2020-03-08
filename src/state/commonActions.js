@@ -2074,7 +2074,7 @@ export const data = {
       y0872ty6n3f:{
         name:"toast",
         price:0.55,
-        picture:rawGithub+'toast_bread.png'
+        picture:rawGithub+'toast_bread2.png'
         ,
         size:{
           small:0.55,
@@ -2084,7 +2084,7 @@ export const data = {
       y0f72tjln3f:{
         name:"brownie",
         price:3.05,
-        picture:rawGithub+'brownies.png',
+        picture:rawGithub+'brownies2.png',
         size:{
           small:3.05,
           large:5.85

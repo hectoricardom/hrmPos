@@ -6,6 +6,12 @@ import * as commonActions from '../../state/commonActions';
 import * as dialogActions from '../../state/dialogActions';
 
 
+
+
+import BezelAddCart from '../BezelAddCart';
+
+import RippleHRM from '../RippleHRM';
+
 import './style.css';
 
 import IngredientOptionRx from '../IngredientOption';
@@ -115,6 +121,8 @@ class ItemDetailDesktopRestarant extends Component {
       itmActive:null,
       show:false,
       isInCart:false,
+      itemAddedCart:false,
+      itemAddedOverlay:false,
       item2cart:{}
     };
   }
@@ -205,11 +213,11 @@ class ItemDetailDesktopRestarant extends Component {
   }
 
 
-  SaveView(){  
+  SaveView(id,currentSizeKey){  
     const { item2cart } = this.state;
-    this.props.actions.UpdateFormbyName(cartFormName,item2cart);
-    if(typeof this.props.closeView === "function"){
-      this.props.closeView()
+    if(currentSizeKey){
+      this.props.actions.UpdateFormbyName(cartFormName,item2cart);     
+      this.bezelCart.Open();
     }
   }
 
@@ -275,8 +283,16 @@ class ItemDetailDesktopRestarant extends Component {
   
 
 
+  ConfirmSave(){ 
+    if(typeof this.props.closeView === "function"){
+      this.props.closeView()
+     }
+  }
 
 
+  refbezel = r => {
+    this.bezelCart = r
+  }
 
 
   render() {
@@ -289,8 +305,12 @@ class ItemDetailDesktopRestarant extends Component {
       console.log(' This code will be executed if app is running standalone ')
     }
    
+    let ImgUrlLogo = item.picture; 
+    let ImgUrl = commonActions.getBlobImage(ImgUrlLogo) || ImgUrlLogo;
       return(
         <div  is-mobile={isMobile?'true':'false'} className={`_items_details_`} item-plate={`${id}`} style={{}}>
+          <BezelAddCart ref={this.refbezel} name={item.name} ImgUrl={ImgUrl} done={this.ConfirmSave.bind(this,id)} />
+          
                           <style>
                             {`
                             ${dimension && item?`
@@ -318,7 +338,7 @@ class ItemDetailDesktopRestarant extends Component {
                             {isMobile?null:
                              <div className="flexSpace"/>
                             }
-                            <img src={item.picture} alt={'logo'} height={160} width={160} img-item-plate={`${id}`}/>      
+                            <img src={ImgUrl} alt={'logo'} height={160} width={160} img-item-plate={`${id}`}/>      
                             <div className={`spec`}>                    
                               <div className="title_text" title-item-plate={`${id}`}>
                                 {item.name}
@@ -342,7 +362,9 @@ class ItemDetailDesktopRestarant extends Component {
                           {
                             item.size && 
                             <div className={`_title_label_`}>
-                                <h5>{'Sizes'}:</h5>
+                                <h5>{'Sizes'}: </h5> 
+                                <div className="flexSpace"/>
+                                <p>{currentSizeKey?'':'Required'} </p>                                
                             </div>
                             }
                             <div className={`_items_details_extras_size`} >
@@ -374,6 +396,11 @@ class ItemDetailDesktopRestarant extends Component {
                                     <div className={`_title_label_`}>
                                       <h5>{_extGrp}:</h5>
                                     </div>
+                                    <div className={`_title_label_`}>
+                                      <h5>{_extGrp}: </h5> 
+                                      <div className="flexSpace"/>
+                                      <p>{'Optional'} </p>                                
+                                  </div>
                                     <div className={`_items_details_extras_size`} >                              
                                     {
                                       extras && Object.keys(extraGrpDetail).map(_ext=>{
@@ -394,15 +421,19 @@ class ItemDetailDesktopRestarant extends Component {
 
                           </div>
                           {isMobile?
-                          <div className={`_add_2_cart_`}>
-                            <div className="flexSpace"/>
-                            <div className={`_label_`}>
-                                {'Add to Cart'}
-                            </div>
-                            <div className="flexSpace"/>
-                            <div className={`_total_`}>
-                                ${this.calcTotal().toFixed(2)}
-                            </div>  
+                          <div className={`_add_2_cart_ ${currentSizeKey?'valid':'invalid'}`}   onClick={this.SaveView.bind(this,id,currentSizeKey)}>
+                            <RippleHRM />
+                            <div className={`_body_`}>
+
+                              <div className="flexSpace"/>
+                              <div className={`_label_`}>
+                                  {'Add to Cart'}
+                              </div>
+                              <div className="flexSpace"/>
+                              <div className={`_total_`}>
+                                  ${this.calcTotal().toFixed(2)}
+                              </div> 
+                            </div> 
                           </div>
                           :
                           <div className={`_items_details_footer`} >

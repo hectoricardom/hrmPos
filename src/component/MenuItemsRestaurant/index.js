@@ -6,6 +6,7 @@ import * as commonActions from '../../state/commonActions';
 import * as dialogActions from '../../state/dialogActions';
 import { NavLink , withRouter} from 'react-router-dom';
 
+import BezelAddCart from '../BezelAddCart';
 
 import './style.css';
 
@@ -60,6 +61,7 @@ class MenuItemsRestarant extends Component {
       _Id: Util.generateUUID(),
       itmActive:null,
       show:false,
+      _bezelCart:null,
       item2cart:{}
     };
   }
@@ -115,7 +117,7 @@ class MenuItemsRestarant extends Component {
   }
 
   
-  showItem(id,groupActive){  
+  showItem(id, groupActive, name, ImgUrl){  
     var _th = this; 
     const {list, extras, isMobile, forms, history} = this.props;   
     let _item = list[id];    
@@ -141,11 +143,18 @@ class MenuItemsRestarant extends Component {
 
       _item2cart[orderId][id]['size'] = {}; 
       _item2cart[orderId][id]['size']['*'] = _item['price'];
-
-      this.setState({item2cart:_item2cart})
+      
       this.props.actions.UpdateFormbyName(cartFormName,_item2cart);
-      history.push("/restaurant?tb=cart");
+      let bElm = <BezelAddCart ref={this.refbezel} name={name} ImgUrl={ImgUrl} />;
 
+      this.setState({item2cart:_item2cart, _bezelCart: bElm});
+      setTimeout(()=>{
+        //this.setState({item2cart:_item2cart, _bezelCart: bElm});
+        this.bezelCart.Open();
+      },50);
+      
+
+      
     }else if(this.state.itmActive!==id){
      
       let attrItm = `[item-plate="${id}"]`;
@@ -237,18 +246,26 @@ class MenuItemsRestarant extends Component {
   }
 
 
+  refbezel = r => {
+    this.bezelCart = r
+  }
+
+
+
 
   render() {
     const { groupActive, list, isMobile } = this.props;
 
 
-    const {show, itmActive, dimension } = this.state;
+    const {show, itmActive, dimension, _bezelCart } = this.state;
     
     let data =  commonActions.data;
 
     var options = Object.keys(data);
       return (
-          <div  is-mobile={isMobile?'true':'false'} className="menu_items_Container ViewDetails" >                    
+          <div  is-mobile={isMobile?'true':'false'} className="menu_items_Container ViewDetails" >
+           {_bezelCart}
+                              
                     {
                       groupActive && list && Object.keys(list).map((itm2,ind2)=>{
                         let factor = .15;
@@ -291,8 +308,10 @@ class MenuItemsRestarant extends Component {
                       }
                       let ImgUrlLogo = item2Show.picture; 
                       let ImgUrl = commonActions.getBlobImage(ImgUrlLogo) || ImgUrlLogo;
+                      
                       return(
                         <div className={`menu_items_  _child_${ind_2+1} ${show?'show':'hide'}`} item-plate={`${itm}`} style={{}}>
+                          
                           <style>
                             {`
                             ${dimension && itm === itmActive?`
@@ -310,7 +329,7 @@ class MenuItemsRestarant extends Component {
                           }
                           `}
                           </style>
-                          <div className={`details ${itm === itmActive?"show":"hide"}`} onClick={this.showItem.bind(this,itm,groupActive)}>                            
+                          <div className={`details ${itm === itmActive?"show":"hide"}`} onClick={this.showItem.bind(this,itm,groupActive,item2Show.name,ImgUrl)}>                            
                             <img src={ImgUrl} alt={'logo'} height={160} width={160} img-item-plate={`${itm}`}/>                           
                             <div className="title_text" title-item-plate={`${itm}`}>
                               {item2Show.name}
